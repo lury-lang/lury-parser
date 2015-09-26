@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lury-parser", "lury-parser\lury-parser.csproj", "{1796C1B7-642D-4739-9BD7-CD07967EB804}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "submodule", "submodule", "{CBD4147B-B781-4A6E-9589-EB9E6A178BA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lury-lexer", "submodule\lury-lexer\lury-lexer\lury-lexer.csproj", "{05C9DF24-183E-43E3-B140-B6DDFD3B95FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lury.Compiling", "submodule\compiler-base\Lury.Compiling\Lury.Compiling.csproj", "{0523CE8E-34D5-46F1-9408-4C957F0BB9AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1796C1B7-642D-4739-9BD7-CD07967EB804}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1796C1B7-642D-4739-9BD7-CD07967EB804}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1796C1B7-642D-4739-9BD7-CD07967EB804}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1796C1B7-642D-4739-9BD7-CD07967EB804}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05C9DF24-183E-43E3-B140-B6DDFD3B95FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05C9DF24-183E-43E3-B140-B6DDFD3B95FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05C9DF24-183E-43E3-B140-B6DDFD3B95FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05C9DF24-183E-43E3-B140-B6DDFD3B95FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0523CE8E-34D5-46F1-9408-4C957F0BB9AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0523CE8E-34D5-46F1-9408-4C957F0BB9AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0523CE8E-34D5-46F1-9408-4C957F0BB9AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0523CE8E-34D5-46F1-9408-4C957F0BB9AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{05C9DF24-183E-43E3-B140-B6DDFD3B95FE} = {CBD4147B-B781-4A6E-9589-EB9E6A178BA0}
+		{0523CE8E-34D5-46F1-9408-4C957F0BB9AA} = {CBD4147B-B781-4A6E-9589-EB9E6A178BA0}
+	EndGlobalSection
+EndGlobal
