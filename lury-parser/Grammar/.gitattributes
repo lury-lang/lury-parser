@@ -1,3 +1,4 @@
 *.sh    eol=lf
+*.bat   eof=crlf
 FileParser.cs	binary
 InteractiveParser.cs    binary
