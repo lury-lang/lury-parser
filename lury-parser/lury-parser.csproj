@@ -33,6 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Grammar\JayAdapt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tree\ArgumentNode.cs" />
     <Compile Include="Tree\CallNode.cs" />
