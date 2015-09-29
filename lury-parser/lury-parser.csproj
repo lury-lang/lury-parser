@@ -34,6 +34,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tree\ArgumentNode.cs" />
+    <Compile Include="Tree\CallNode.cs" />
+    <Compile Include="Tree\EvalNode.cs" />
+    <Compile Include="Tree\ParameterNode.cs" />
+    <Compile Include="Tree\UnittestStatementNode.cs" />
+    <Compile Include="Tree\ElifStatementNode.cs" />
+    <Compile Include="Tree\ElseStatementNode.cs" />
+    <Compile Include="Tree\ClassStatementNode.cs" />
+    <Compile Include="Tree\FunctionStatementNode.cs" />
+    <Compile Include="Tree\WhileStatementNode.cs" />
+    <Compile Include="Tree\IfStatementNode.cs" />
+    <Compile Include="Tree\ImportStatementNode.cs" />
+    <Compile Include="Tree\UnaryStatementNode.cs" />
+    <Compile Include="Tree\NullaryStatementNode.cs" />
+    <Compile Include="Tree\TernaryNode.cs" />
+    <Compile Include="Tree\BinaryNode.cs" />
+    <Compile Include="Tree\StatementNode.cs" />
+    <Compile Include="Tree\UnaryNode.cs" />
+    <Compile Include="Tree\ConstantNode.cs" />
+    <Compile Include="Tree\Node.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\submodule\compiler-base\Lury.Compiling\Lury.Compiling.csproj">
