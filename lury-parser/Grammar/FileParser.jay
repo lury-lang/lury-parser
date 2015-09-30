@@ -1,0 +1,765 @@
+%{
+
+//
+// FileParser.jay / FileParser.cs
+//
+// Author:
+//       Tomona Nanase <nanase@users.noreply.github.com>
+//
+// The MIT License (MIT)
+//
+// Copyright (c) 2014-2015 Tomona Nanase
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+using System;
+using System.Collections.Generic;
+using Lury.Compiling.Parser.Tree;
+
+using LToken = Lury.Compiling.Lexer.Token;
+
+namespace Lury.Compiling.Parser
+{
+    partial class FileParser
+    {
+        private int yacc_verbose_flag = 0;
+        
+%}
+
+/* Whitespace */
+%token NewLine Indent Dedent EndOfFile
+
+/* ContextualKeyword */
+%token IdentifierGet IdentifierSet IdentifierFile IdentifierLine IdentifierExit
+%token IdentifierSuccess IdentifierFailure
+
+/* Keyword */
+%token KeywordAbstract KeywordAnd KeywordBreak KeywordCase KeywordCatch KeywordClass
+%token KeywordContinue KeywordDef KeywordDefault KeywordDelete KeywordElif KeywordElse
+%token KeywordEnum KeywordExtended KeywordFalse KeywordFinally KeywordFor KeywordIf
+%token KeywordImport KeywordIn KeywordInterface KeywordInvariant KeywordIs KeywordLazy
+%token KeywordNameof KeywordNew KeywordNil KeywordNot KeywordOr KeywordOut KeywordOverride
+%token KeywordPass KeywordPrivate KeywordProperty KeywordProtected KeywordPublic
+%token KeywordRef KeywordReflect KeywordReturn KeywordScope KeywordSealed KeywordStatic
+%token KeywordSuper KeywordSwitch KeywordThis KeywordThrow KeywordTrue KeywordTry
+%token KeywordUnittest KeywordUnless KeywordUntil KeywordVar KeywordWhile KeywordWith
+%token KeywordYield
+
+/* Identifier */
+%token Identifier
+
+/* Literal */
+%token StringLiteral EmbedStringLiteral WysiwygStringLiteral
+%token ImaginaryNumber FloatNumber Integer
+
+/* Operator */
+%token RangeOpen RangeClose Increment AssignmentAdd Decrement AssignmentSub
+%token AnnotationReturn AssignmentConcat AssignmentPower Power AssignmentMultiply
+%token AssignmentIntDivide IntDivide AssignmentDivide AssignmentModulo AssignmentLeftShift
+%token LeftShift LessThan AssignmentRightShift RightShift MoreThan Equal Lambda NotEqual
+%token NotIn IsNot AndShort AssignmentAnd AssignmentXor OrShort AssignmentOr NilCoalesce
+
+//%type <int> Expression
+
+%left  ','
+%right '=' AssignmentPower AssignmentMultiply AssignmentDivide AssignmentIntDivide AssignmentModulo AssignmentAdd AssignmentSub AssignmentConcat AssignmentOr AssignmentAnd AssignmentXor AssignmentLeftShift AssignmentRightShift
+%right '?' ':' KeywordIf KeywordElse
+%left  OrShort KeywordOr
+%left  AndShort KeywordAnd
+%right '!' KeywordNot
+%left  Equal NotEqual '<' '>' LessThan MoreThan KeywordIs IsNot
+%left  '|'
+%left  '^'
+%left  '&'
+%left  LeftShift RightShift
+%left  '+' '-' '~'
+%left  '*' IntDivide '/' '%'
+%right Power
+%right Increment Decrement
+%left  '.'
+
+%start program
+
+%%
+
+program
+    :
+        {
+            $$ = new Node[0];
+        }
+    | program_lines
+
+program_lines
+    : program_line
+    | program_lines program_line
+        {
+	        var newList = new List<Node>((IEnumerable<Node>)$1);
+	        newList.AddRange((IEnumerable<Node>)$2);
+	        $$ = newList;
+        }
+
+program_line
+    : statement
+    | NewLine
+    	{
+    		$$ = new Node[0];
+    	}
+
+
+statement
+    : statement_list NewLine
+        {
+            $$ = $1;
+        }
+    | compound_statement
+        {
+            $$ = new Node[] { (Node)$1 };
+        }
+
+statement_list
+    : simple_statement
+        {
+            $$ = new Node[] { (Node)$1 };
+        }
+    | simple_statement simple_statements
+        {
+            if ($2 == null)
+                $$ = new Node[] { (Node)$1 };
+            else
+            {
+                var newList = new List<Node>() { (Node)$1 };
+                newList.AddRange((IEnumerable<Node>)$2);
+                $$ = newList;
+            }
+        }
+
+simple_statements
+    : ';'
+        {
+            $$ = null;
+        }
+    | ';' simple_statement
+        {
+            $$ = new Node[] { (Node)$2 };
+        }
+    | ';' simple_statement simple_statements
+        {
+            if ($3 == null)
+                $$ = new Node[] { (Node)$2 };
+            else
+            {
+                var newList = new List<Node>() { (Node)$1 };
+                newList.AddRange((IEnumerable<Node>)$2);
+                $$ = newList;
+            }
+        }
+
+compound_statement
+    : if_statement
+    | while_statement
+    | function_definition
+    | class_definition
+
+suite
+    : statement_list NewLine
+        {
+            $$ = $1;
+        }
+    | NewLine Indent statements Dedent
+        {
+            $$ = $3;
+        }
+
+statements
+    : statement
+    | statements statement
+        {
+            var newList = new List<Node>((IEnumerable<Node>)$1);
+            newList.AddRange((IEnumerable<Node>)$2);
+            $$ = newList;
+        }
+
+if_statement
+    : KeywordIf expression ':' suite
+        {
+            $$ = new IfStatementNode((LToken)$1, (Node)$2, (IEnumerable<Node>)$4);
+        }
+    | KeywordIf expression ':' suite elif_statements
+        {
+            $$ = new IfStatementNode((LToken)$1, (Node)$2, (IEnumerable<Node>)$4, (StatementNode)$5);
+        }
+
+elif_statements
+    : KeywordElif expression ':' suite
+        {
+            $$ = new ElifStatementNode((LToken)$1, (Node)$2, (IEnumerable<Node>)$4);
+        }
+    | KeywordElif expression ':' suite elif_statements
+        {
+            $$ = new ElifStatementNode((LToken)$1, (Node)$2, (IEnumerable<Node>)$4, (StatementNode)$5);
+        }
+    | else_statement
+
+else_statement
+    : KeywordElse ':' suite
+        {
+            $$ = new ElseStatementNode((LToken)$1, (IEnumerable<Node>)$3);
+        }
+
+while_statement
+    : KeywordWhile expression ':' suite
+        {
+            $$ = new WhileStatementNode((LToken)$1, (Node)$2, (IEnumerable<Node>)$4);
+        }
+    | KeywordWhile expression ':' suite else_statement
+        {
+            $$ = new WhileStatementNode((LToken)$1, (Node)$2, (IEnumerable<Node>)$4, (StatementNode)$5);
+        }
+
+function_definition
+    : KeywordDef function_name '(' parameter_list ')' ':' suite
+		{
+            $$ = new FunctionStatementNode((LToken)$1, (Node)$2, (IEnumerable<Node>)$4, (IEnumerable<Node>)$7);
+        }
+     | KeywordDef function_name '(' ')' ':' suite
+        {
+            $$ = new FunctionStatementNode((LToken)$1, (Node)$2, (IEnumerable<Node>)$6);
+        }
+    | KeywordDef function_name ':' suite
+		{
+            $$ = new FunctionStatementNode((LToken)$1, (Node)$2, (IEnumerable<Node>)$4);
+        }
+
+function_name
+    : identifier_all
+        {
+            $$ = new ConstantNode((LToken)$1, ConstantNodeType.Identifier);
+        }
+    | function_name '.' identifier_all
+    	{
+            Node n = new ConstantNode((LToken)$3, ConstantNodeType.Identifier);
+            $$ = new BinaryNode((LToken)$2, (Node)$1, n, BinaryNodeType.Dot);
+        }
+
+parameter_list
+    : parameter
+        {
+            $$ = new Node[] { new ParameterNode((Node)$1) };
+        }
+    | parameter_list ',' parameter
+        {
+            var newList = new List<Node>((IEnumerable<Node>)$1);
+            newList.Add((Node)$3);
+            $$ = newList;
+        }
+
+parameter
+    : identifier_all
+        {
+            $$ = new ConstantNode((LToken)$1, ConstantNodeType.Identifier);
+        }
+
+class_definition
+    : KeywordClass class_name '(' inheritance_list ')' ':' suite
+        {
+            $$ = new ClassStatementNode((LToken)$1, (Node)$2, (IEnumerable<Node>)$4, (IEnumerable<Node>)$7);
+        }
+    | KeywordClass class_name ':' suite
+        {
+            $$ = new ClassStatementNode((LToken)$1, (Node)$2, (IEnumerable<Node>)$4);
+        }
+
+class_name
+    : identifier_all
+        {
+            $$ = new ConstantNode((LToken)$1, ConstantNodeType.Identifier);
+        }
+
+inheritance_list
+    : object_name
+        {
+            $$ = new Node[] { (Node)$1 };
+        }
+    | inheritance_list ',' object_name
+        {
+            var newList = new List<Node>((IEnumerable<Node>)$1);
+            newList.Add((Node)$3);
+            $$ = newList;
+        }
+
+object_name
+    : identifier_all
+        {
+            $$ = new ConstantNode((LToken)$1, ConstantNodeType.Identifier);
+        }
+    | object_name '.' identifier_all
+        {
+            Node n = new ConstantNode((LToken)$3, ConstantNodeType.Identifier);
+            $$ = new BinaryNode((LToken)$2, (Node)$1, n, BinaryNodeType.Dot);
+        }
+
+
+simple_statement
+    : pass_statement
+    | expression_statement
+    | return_statement
+    | break_statement
+    | continue_statement
+    | import_statement
+
+pass_statement
+    : KeywordPass
+        {
+            $$ = new NullaryStatementNode((LToken)$1, StatementNodeType.Pass);
+        }
+
+expression_statement
+    : expression
+
+return_statement
+    : KeywordReturn
+		{
+			$$ = new NullaryStatementNode((LToken)$1, StatementNodeType.Return);
+		}
+    | KeywordReturn expression
+    	{
+			$$ = new UnaryStatementNode((LToken)$1, (Node)$2, StatementNodeType.Return);
+		}
+
+break_statement
+    : KeywordBreak
+        {
+            $$ = new NullaryStatementNode((LToken)$1, StatementNodeType.Break);
+        }
+
+continue_statement
+    : KeywordContinue
+        {
+            $$ = new NullaryStatementNode((LToken)$1, StatementNodeType.Continue);
+        }
+
+import_statement
+    : KeywordImport import_names
+        {
+            $$ = new ImportStatementNode((LToken)$1, (IEnumerable<Node>)$2);
+        }
+    | KeywordPublic KeywordImport import_names
+        {
+            $$ = new ImportStatementNode((LToken)$1, (LToken)$2, (IEnumerable<Node>)$3);
+        }
+
+import_names
+    : import_name
+        {
+            $$ = new Node[] { (Node)$1 };
+        }
+    | import_names ',' import_name
+        {
+            var newList = new List<Node>((IEnumerable<Node>)$1);
+            newList.Add((Node)$3);
+            $$ = newList;
+        }
+
+import_name
+    : module_name
+
+module_name
+    : identifier_all
+        {
+            $$ = new ConstantNode((LToken)$1, ConstantNodeType.Identifier);
+        }
+    | module_name '.' identifier_all
+        {
+            Node n = new ConstantNode((LToken)$3, ConstantNodeType.Identifier);
+            $$ = new BinaryNode((LToken)$2, (Node)$1, n, BinaryNodeType.Dot);
+        }
+
+identifier_all
+    : Identifier
+    | contextual_keyword
+
+contextual_keyword
+    : IdentifierGet
+    | IdentifierSet
+    | IdentifierFile
+    | IdentifierLine
+    | IdentifierExit
+    | IdentifierSuccess
+    | IdentifierFailure
+
+
+expression
+    : comma_expression
+
+comma_expression
+    : assignment_expression
+    | assignment_expression ',' comma_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.Comma);
+        }
+
+assignment_expression 
+    : conditional_expression
+    | conditional_expression '=' assignment_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.Assign);
+        }
+    | conditional_expression AssignmentAdd assignment_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.AssignAddition);
+        }
+    | conditional_expression AssignmentSub assignment_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.AssignSubtraction);
+        }
+    | conditional_expression AssignmentMultiply assignment_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.AssignMultiplication);
+        }
+    | conditional_expression AssignmentDivide assignment_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.AssignDivision);
+        }
+    | conditional_expression AssignmentIntDivide assignment_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.AssignIntDivision);
+        }
+    | conditional_expression AssignmentPower assignment_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.AssignPower);
+        }
+    | conditional_expression AssignmentModulo assignment_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.AssignModulo);
+        }
+    | conditional_expression AssignmentAnd assignment_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.AssignArithmeticAnd);
+        }
+    | conditional_expression AssignmentOr assignment_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.AssignArithmeticOr);
+        }
+    | conditional_expression AssignmentXor assignment_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.AssignArithmeticXor);
+        }
+    | conditional_expression AssignmentConcat assignment_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.AssignConcatenation);
+        }
+    | conditional_expression AssignmentLeftShift assignment_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.AssignLeftShift);
+        }
+    | conditional_expression AssignmentRightShift assignment_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.AssignRightShift);
+        }
+
+conditional_expression
+    : bool_or_expression
+    | bool_or_expression '?' bool_or_expression ':' bool_or_expression
+        {
+            $$ = new TernaryNode((LToken)$2, (LToken)$4, (Node)$1, (Node)$3, (Node)$5, TernaryNodeType.Condition);
+        }
+    | bool_or_expression KeywordIf bool_or_expression KeywordElse bool_or_expression
+        {
+            $$ = new TernaryNode((LToken)$2, (LToken)$4, (Node)$3, (Node)$1, (Node)$5, TernaryNodeType.Condition);
+        }
+
+bool_or_expression
+    : bool_and_expression
+    | bool_or_expression KeywordOr bool_and_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.LogicalOr);
+        }
+    | bool_or_expression OrShort bool_and_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.LogicalOr);
+        }
+
+bool_and_expression
+    : bool_not_expression
+    | bool_and_expression KeywordAnd bool_not_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.LogicalAnd);
+        }
+    | bool_and_expression AndShort bool_not_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.LogicalAnd);
+        }
+
+bool_not_expression
+    : comparison_expression
+    | KeywordNot bool_not_expression
+        {
+            $$ = new UnaryNode((LToken)$1, (Node)$2, UnaryNodeType.LogicalNot);
+        }
+    | '!' bool_not_expression
+        {
+            $$ = new UnaryNode((LToken)$1, (Node)$2, UnaryNodeType.LogicalNot);
+        }
+
+comparison_expression
+    : or_expression
+    | comparison_expression '<' or_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.LessThan);
+        }
+    | comparison_expression '>' or_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.GreaterThan);
+        }
+    | comparison_expression LessThan or_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.LessThanEqual);
+        }
+    | comparison_expression MoreThan or_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.GreaterThanEqual);
+        }
+    | comparison_expression Equal or_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.Equal);
+        }
+    | comparison_expression NotEqual or_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.NotEqual);
+        }
+    | comparison_expression KeywordIs or_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.Is);
+        }
+    | comparison_expression IsNot or_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.IsNot);
+        }
+    | comparison_expression KeywordIs KeywordNot or_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.IsNot);
+        }
+
+or_expression
+    : xor_expression
+    | or_expression '|' xor_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.ArithmeticOr);
+        }
+
+xor_expression
+    : and_expression
+    | xor_expression '^' and_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.ArithmeticXor);
+        }
+
+and_expression
+    : shift_expression
+    | and_expression '&' shift_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.ArithmeticAnd);
+        }
+
+shift_expression
+    : addition_expression
+    | shift_expression LeftShift addition_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.LeftShift);
+        }
+    | shift_expression RightShift addition_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.RightShift);
+        }
+
+addition_expression
+    : multiplication_expression
+    | addition_expression '+' multiplication_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.Addition);
+        }
+    | addition_expression '-' multiplication_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.Subtraction);
+        }
+    | addition_expression '~' multiplication_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.Concatenation);
+        }
+
+multiplication_expression 
+    : unary_expression
+    | multiplication_expression '*' unary_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.Multiplication);
+        }
+    | multiplication_expression IntDivide unary_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.IntDivision);
+        }
+    | multiplication_expression '/' unary_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.Division);
+        }
+    | multiplication_expression '%' unary_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.Modulo);
+        }
+
+unary_expression
+    : power_expression
+    | Increment unary_expression
+        {
+            $$ = new UnaryNode((LToken)$1, (Node)$2, UnaryNodeType.IncrementPrefix);
+        }
+    | Decrement unary_expression
+        {
+            $$ = new UnaryNode((LToken)$1, (Node)$2, UnaryNodeType.DecrementPrefix);
+        }
+    | '-' unary_expression
+        {
+            $$ = new UnaryNode((LToken)$1, (Node)$2, UnaryNodeType.SignNegative);
+        }
+    | '+' unary_expression
+        {
+            $$ = new UnaryNode((LToken)$1, (Node)$2, UnaryNodeType.SignPositive);
+        }
+    | '~' unary_expression
+        {
+            $$ = new UnaryNode((LToken)$1, (Node)$2, UnaryNodeType.BitwiseNot);
+        }
+
+power_expression
+    : callref_expression
+    | power_expression Power callref_expression
+        {
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.Power);
+        }
+
+callref_expression
+    : postfix_expression
+		{
+			$$ = new EvalNode((Node)$1);
+		}
+    | KeywordRef postfix_expression
+    	{
+			$$ = new UnaryNode((LToken)$2, (Node)$1, UnaryNodeType.Ref);
+		}
+
+postfix_expression
+    : primary
+    | postfix_expression '.' identifier_all
+        {
+            Node n = new ConstantNode((LToken)$3, ConstantNodeType.Identifier);
+            $$ = new BinaryNode((LToken)$2, (Node)$1, n, BinaryNodeType.Dot);
+        }
+    | postfix_expression Increment
+        {
+            $$ = new UnaryNode((LToken)$2, (Node)$1, UnaryNodeType.IncrementPostfix);
+        }
+    | postfix_expression Decrement
+        {
+            $$ = new UnaryNode((LToken)$2, (Node)$1, UnaryNodeType.DecrementPostfix);
+        }
+    | postfix_expression '(' ')'
+        {
+            $$ = new CallNode((Node)$1);
+        }
+    | postfix_expression '(' argument_list ')'
+        {
+            $$ = new CallNode((Node)$1, (IEnumerable<Node>)$3);
+        }
+
+argument_list
+    : argument
+        {
+            $$ = new Node[] { (Node)$1 };
+        }
+    | argument_list ',' argument
+        {
+            var newList = new List<Node>((IEnumerable<Node>)$1);
+            newList.Add((Node)$3);
+            $$ = newList;
+        }
+
+argument
+    : assignment_expression
+    | named_argument
+
+named_argument
+    : identifier_all ':' expression
+        {
+            $$ = new ArgumentNode((LToken)$1, (Node)$2);
+        }
+
+primary
+    : identifier_all
+        {
+            $$ = new ConstantNode((LToken)$1, ConstantNodeType.Identifier);
+        }
+    | literal
+    | KeywordTrue
+        {
+            $$ = new ConstantNode((LToken)$1, ConstantNodeType.False);
+        }
+    | KeywordFalse
+        {
+            $$ = new ConstantNode((LToken)$1, ConstantNodeType.True);
+        }
+    | KeywordNil
+        {
+            $$ = new ConstantNode((LToken)$1, ConstantNodeType.Nil);
+        }
+    | KeywordThis
+        {
+            $$ = new ConstantNode((LToken)$1, ConstantNodeType.This);
+        }
+    | KeywordSuper
+        {
+            $$ = new ConstantNode((LToken)$1, ConstantNodeType.Super);
+        }
+    | '(' expression ')'
+        {
+            $$ = $2;
+        }
+
+literal
+    : StringLiteral
+        {
+            $$ = new ConstantNode((LToken)$1, ConstantNodeType.String);
+        }
+    | WysiwygStringLiteral
+        {
+            $$ = new ConstantNode((LToken)$1, ConstantNodeType.String);
+        }
+    | ImaginaryNumber
+        {
+            $$ = new ConstantNode((LToken)$1, ConstantNodeType.Imaginary);
+        }
+    | FloatNumber
+        {
+            $$ = new ConstantNode((LToken)$1, ConstantNodeType.Floating);
+        }
+    | Integer
+        {
+            $$ = new ConstantNode((LToken)$1, ConstantNodeType.Integer);
+        }
+    
+%%
+        }
