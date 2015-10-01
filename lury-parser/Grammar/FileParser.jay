@@ -659,7 +659,7 @@ callref_expression
 		}
     | KeywordRef postfix_expression
     	{
-			$$ = new UnaryNode((LToken)$2, (Node)$1, UnaryNodeType.Ref);
+			$$ = new UnaryNode((LToken)$1, (Node)$2, UnaryNodeType.Ref);
 		}
 
 postfix_expression

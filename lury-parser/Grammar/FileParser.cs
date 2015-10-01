@@ -1129,7 +1129,7 @@ case 139:
 case 140:
 #line 663 "FileParser.jay"
   {
-			yyVal = new UnaryNode((LToken)yyVals[0+yyTop], (Node)yyVals[-1+yyTop], UnaryNodeType.Ref);
+			yyVal = new UnaryNode((LToken)yyVals[-1+yyTop], (Node)yyVals[0+yyTop], UnaryNodeType.Ref);
 		}
   break;
 case 142:
