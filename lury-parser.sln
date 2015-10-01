@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lury-lexer", "submodule\lur
 		{0523CE8E-34D5-46F1-9408-4C957F0BB9AA} = {0523CE8E-34D5-46F1-9408-4C957F0BB9AA}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lury.Compiling", "submodule\compiler-base\Lury.Compiling\Lury.Compiling.csproj", "{0523CE8E-34D5-46F1-9408-4C957F0BB9AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lury.Compiling", "submodule\lury-lexer\submodule\compiler-base\Lury.Compiling\Lury.Compiling.csproj", "{0523CE8E-34D5-46F1-9408-4C957F0BB9AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
