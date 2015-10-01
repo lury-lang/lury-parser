@@ -39,13 +39,14 @@ namespace Lury.Compiling.Parser
     {
         #region -- Private Fields --
 
-        private IEnumerable<Node> output;
+        private readonly IEnumerable<LToken> input;
+        private IReadOnlyList<Node> output;
 
         #endregion
 
         #region -- Public Properties --
 
-        public IEnumerable<Node> TreeOutput
+        public IReadOnlyList<Node> TreeOutput
         {
             get
             {
@@ -62,16 +63,28 @@ namespace Lury.Compiling.Parser
 
         #endregion
 
+        #region -- Constructors --
+
+        public Parser(IEnumerable<LToken> input)
+        {
+            if (input == null)
+                throw new ArgumentNullException("input");
+
+            this.input = input;
+        }
+
+        #endregion
+
         #region -- Public Methods --
 
-        public bool Parse(IEnumerable<LToken> input)
+        public bool Parse()
         {
             if (this.IsFinished)
                 throw new InvalidOperationException("Parsing is already finished.");
 
             var parser = new FileParser();
 
-            this.output = (IEnumerable<Node>)parser.yyparse(new Lex2yyInput(input));
+            this.output = (IReadOnlyList<Node>)parser.yyparse(new Lex2yyInput(this.input));
 
             this.IsFinished = true;
             return true;
