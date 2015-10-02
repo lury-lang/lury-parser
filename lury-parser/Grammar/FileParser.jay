@@ -655,7 +655,10 @@ power_expression
 callref_expression
     : postfix_expression
 		{
-			$$ = new EvalNode((Node)$1);
+            if ($1 is ConstantNode)
+                $$ = $1;
+            else
+    			$$ = new EvalNode((Node)$1);
 		}
     | KeywordRef postfix_expression
     	{

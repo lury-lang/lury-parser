@@ -1121,13 +1121,10 @@ case 138:
         }
   break;
 case 139:
-#line 659 "FileParser.jay"
-  {
-			yyVal = new EvalNode((Node)yyVals[0+yyTop]);
-		}
+  case_139();
   break;
 case 140:
-#line 663 "FileParser.jay"
+#line 666 "FileParser.jay"
   {
 			yyVal = new UnaryNode((LToken)yyVals[-1+yyTop], (Node)yyVals[0+yyTop], UnaryNodeType.Ref);
 		}
@@ -1136,31 +1133,31 @@ case 142:
   case_142();
   break;
 case 143:
-#line 675 "FileParser.jay"
+#line 678 "FileParser.jay"
   {
             yyVal = new UnaryNode((LToken)yyVals[0+yyTop], (Node)yyVals[-1+yyTop], UnaryNodeType.IncrementPostfix);
         }
   break;
 case 144:
-#line 679 "FileParser.jay"
+#line 682 "FileParser.jay"
   {
             yyVal = new UnaryNode((LToken)yyVals[0+yyTop], (Node)yyVals[-1+yyTop], UnaryNodeType.DecrementPostfix);
         }
   break;
 case 145:
-#line 683 "FileParser.jay"
+#line 686 "FileParser.jay"
   {
             yyVal = new CallNode((Node)yyVals[-2+yyTop]);
         }
   break;
 case 146:
-#line 687 "FileParser.jay"
+#line 690 "FileParser.jay"
   {
             yyVal = new CallNode((Node)yyVals[-3+yyTop], (IEnumerable<Node>)yyVals[-1+yyTop]);
         }
   break;
 case 147:
-#line 693 "FileParser.jay"
+#line 696 "FileParser.jay"
   {
             yyVal = new Node[] { (Node)yyVals[0+yyTop] };
         }
@@ -1169,79 +1166,79 @@ case 148:
   case_148();
   break;
 case 151:
-#line 709 "FileParser.jay"
+#line 712 "FileParser.jay"
   {
             yyVal = new ArgumentNode((LToken)yyVals[-2+yyTop], (Node)yyVals[-1+yyTop]);
         }
   break;
 case 152:
-#line 715 "FileParser.jay"
+#line 718 "FileParser.jay"
   {
             yyVal = new ConstantNode((LToken)yyVals[0+yyTop], ConstantNodeType.Identifier);
         }
   break;
 case 154:
-#line 720 "FileParser.jay"
+#line 723 "FileParser.jay"
   {
             yyVal = new ConstantNode((LToken)yyVals[0+yyTop], ConstantNodeType.False);
         }
   break;
 case 155:
-#line 724 "FileParser.jay"
+#line 727 "FileParser.jay"
   {
             yyVal = new ConstantNode((LToken)yyVals[0+yyTop], ConstantNodeType.True);
         }
   break;
 case 156:
-#line 728 "FileParser.jay"
+#line 731 "FileParser.jay"
   {
             yyVal = new ConstantNode((LToken)yyVals[0+yyTop], ConstantNodeType.Nil);
         }
   break;
 case 157:
-#line 732 "FileParser.jay"
+#line 735 "FileParser.jay"
   {
             yyVal = new ConstantNode((LToken)yyVals[0+yyTop], ConstantNodeType.This);
         }
   break;
 case 158:
-#line 736 "FileParser.jay"
+#line 739 "FileParser.jay"
   {
             yyVal = new ConstantNode((LToken)yyVals[0+yyTop], ConstantNodeType.Super);
         }
   break;
 case 159:
-#line 740 "FileParser.jay"
+#line 743 "FileParser.jay"
   {
             yyVal = yyVals[-1+yyTop];
         }
   break;
 case 160:
-#line 746 "FileParser.jay"
+#line 749 "FileParser.jay"
   {
             yyVal = new ConstantNode((LToken)yyVals[0+yyTop], ConstantNodeType.String);
         }
   break;
 case 161:
-#line 750 "FileParser.jay"
+#line 753 "FileParser.jay"
   {
             yyVal = new ConstantNode((LToken)yyVals[0+yyTop], ConstantNodeType.String);
         }
   break;
 case 162:
-#line 754 "FileParser.jay"
+#line 757 "FileParser.jay"
   {
             yyVal = new ConstantNode((LToken)yyVals[0+yyTop], ConstantNodeType.Imaginary);
         }
   break;
 case 163:
-#line 758 "FileParser.jay"
+#line 761 "FileParser.jay"
   {
             yyVal = new ConstantNode((LToken)yyVals[0+yyTop], ConstantNodeType.Floating);
         }
   break;
 case 164:
-#line 762 "FileParser.jay"
+#line 765 "FileParser.jay"
   {
             yyVal = new ConstantNode((LToken)yyVals[0+yyTop], ConstantNodeType.Integer);
         }
@@ -1389,15 +1386,24 @@ void case_63()
             yyVal = new BinaryNode((LToken)yyVals[-1+yyTop], (Node)yyVals[-2+yyTop], n, BinaryNodeType.Dot);
         }
 
+void case_139()
+#line 657 "FileParser.jay"
+{
+            if (yyVals[0+yyTop] is ConstantNode)
+                yyVal = yyVals[0+yyTop];
+            else
+    			yyVal = new EvalNode((Node)yyVals[0+yyTop]);
+		}
+
 void case_142()
-#line 668 "FileParser.jay"
+#line 671 "FileParser.jay"
 {
             Node n = new ConstantNode((LToken)yyVals[0+yyTop], ConstantNodeType.Identifier);
             yyVal = new BinaryNode((LToken)yyVals[-1+yyTop], (Node)yyVals[-2+yyTop], n, BinaryNodeType.Dot);
         }
 
 void case_148()
-#line 695 "FileParser.jay"
+#line 698 "FileParser.jay"
 {
             var newList = new List<Node>((IEnumerable<Node>)yyVals[-2+yyTop]);
             newList.Add((Node)yyVals[0+yyTop]);
@@ -2373,7 +2379,7 @@ void case_148()
    -1,  334,
   };
 
-#line 765 "FileParser.jay"
+#line 768 "FileParser.jay"
         }
 #line default
 
