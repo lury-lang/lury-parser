@@ -9,7 +9,7 @@ namespace UnitTest
     public class ParserTest
     {
         [TestMethod]
-        public void IsFinished()
+        public void IsFinishedTest()
         {
             var lexer = new Lexer("", @"");
             lexer.Tokenize();
