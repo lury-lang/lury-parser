@@ -377,10 +377,6 @@ t
 .
  epilog			## text following second %%
 .
-.    namespace yydebug
-.    {
-.        using System;
-.
 .        internal interface yyDebug
 .        {
 .            void push(int state, Object value);
@@ -467,17 +463,12 @@ t
 .                println("reject");
 .            }
 .        }
-.    }
 .
 .    // %token constants
 .    internal class Token
 .    {
  tokens       public const int
 .    }
-.
-.    namespace yyParser
-.    {
-.        using System;
 .
 .        /** thrown for irrecoverable syntax errors and stack overflow.
 .          */
@@ -544,6 +535,5 @@ t
 .            string Text { get; }
 .            int TokenNumber { get; }
 .             int Index { get; }
-.        }
 .    }
 .} // close outermost namespace, that MUST HAVE BEEN opened in the prolog
