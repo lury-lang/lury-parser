@@ -14,19 +14,19 @@
 .        /** error output stream.
 .          * It should be changeable.
 .          */
-.        public System.IO.TextWriter ErrorOutput = System.Console.Out;
+.        internal System.IO.TextWriter ErrorOutput = System.Console.Out;
 .
 .        /** simplified error message.
 .          * @see <a href="#yyerror(java.lang.String, java.lang.String[])">yyerror</a>
 .          */
-.        public void yyerror (string message)
+.        internal void yyerror (string message)
 .        {
 .            yyerror(message, null);
 .        }
 .
 .#pragma warning disable 649
 .        /* An EOF token */
-.        public int eof_token;
+.        internal int eof_token;
 .#pragma warning restore 649
 .
 .        /** (syntax) error message.
@@ -34,7 +34,7 @@
 .          * @param message text to be displayed.
 .          * @param expected vector of acceptable tokens, if available.
 .          */
-.        public void yyerror(string message, string[] expected)
+.        internal void yyerror(string message, string[] expected)
 .        {
 .            if ((yacc_verbose_flag > 0) && (expected != null) && (expected.Length  > 0))
 .            {
@@ -60,7 +60,7 @@ t        /** index-checked interface to yyNames[].
 t          * @param token single character or %token value.
 t          * @return token name or [illegal] or [unknown].
 t          */
-t        public static string yyname (int token)
+t        internal static string yyname (int token)
 t        {
 t            if ((token < 0) || (token > yyNames.Length))
 t                return "[illegal]";
@@ -81,7 +81,7 @@ t        }
 .          * @param state for which to compute the list.
 .          * @return list of token names.
 .          */
-.        protected int[] yyExpectingTokens(int state)
+.        internal int[] yyExpectingTokens(int state)
 .        {
 .            int token, n, len = 0;
 .            bool[] ok = new bool[yyNames.Length];
@@ -110,7 +110,7 @@ t        }
 .            return result;
 .        }
 .
-.        protected string[] yyExpecting(int state)
+.        internal string[] yyExpecting(int state)
 .        {
 .            int[] tokens = yyExpectingTokens(state);
 .            string[] result = new string[tokens.Length];
@@ -128,7 +128,7 @@ t        }
 .          * @return result of the last reduction, if any.
 .          * @throws yyException on irrecoverable parse error.
 .          */
-.        internal Object yyparse(yyParser.yyInput yyLex, yydebug.yyDebug yyd)
+.        internal Object yyparse(yyInput yyLex, yyDebug yyd)
 .        {
 t            this.debug = yyd;
 .            return yyparse(yyLex);
@@ -138,7 +138,7 @@ t            this.debug = yyd;
 .          * This is not final so that it can be overwritten outside of invocations
 .          * of yyparse().
 .          */
-.        protected int yyMax;
+.        internal int yyMax;
 .
 .        /** executed at the beginning of a reduce action.
 .          * Used as $$ = yyDefault($1), prior to the user-specified action, if any.
@@ -146,7 +146,7 @@ t            this.debug = yyd;
 .          * @param first value for $1, or null.
 .          * @return first.
 .          */
-.        protected Object yyDefault(Object first)
+.        internal Object yyDefault(Object first)
 .        {
 .            return first;
 .        }
@@ -154,13 +154,13 @@ t            this.debug = yyd;
 .        static int[] global_yyStates;
 .        static object[] global_yyVals;
 .#pragma warning disable 649
-.        protected bool use_global_stacks;
+.        bool use_global_stacks;
 .#pragma warning restore 649
 .        object[] yyVals;					// value stack
 .        object yyVal;						// value stack ptr
 .        int yyToken;						// current input
 .        int yyTop;
-.        yyParser.IToken currentToken;
+.        IToken currentToken;
 .
 .        /** the generated parser.
 .          * Maintains a state and a value stack, currently with fixed maximum size.
@@ -168,7 +168,7 @@ t            this.debug = yyd;
 .          * @return result of the last reduction, if any.
 .          * @throws yyException on irrecoverable parse error.
 .          */
-.        internal Object yyparse (yyParser.yyInput yyLex)
+.        internal Object yyparse (yyInput yyLex)
 .        {
 .            if (yyMax <= 0)
 .                yyMax = 256;		            // initial size
@@ -260,7 +260,7 @@ t                                if (debug != null)
 t                                    debug.error("syntax error");
 .
 .                                if (yyToken == 0 /*eof*/ || yyToken == eof_token)
-.                                    throw new yyParser.yyUnexpectedEof(currentToken);
+.                                    throw new yyUnexpectedEof(currentToken);
 .
 .                                goto case 1;
 .
@@ -290,7 +290,7 @@ t
 t                                if (debug != null)
 t                                    debug.reject();
 .
-.                                throw new yyParser.yySyntaxError("irrecoverable syntax error", currentToken);
+.                                throw new yySyntaxError("irrecoverable syntax error", currentToken);
 .
 .                            case 3:
 .                                if (yyToken == 0)
@@ -298,7 +298,7 @@ t                                    debug.reject();
 t                                    if (debug != null)
 t                                        debug.reject();
 t
-.                                    throw new yyParser.yySyntaxErrorAtEof("irrecoverable syntax error at end-of-file",
+.                                    throw new yySyntaxErrorAtEof("irrecoverable syntax error at end-of-file",
 .                                                                          currentToken);
 .                                }
 .
@@ -395,7 +395,7 @@ t
 .            void reject();
 .        }
 .
-.        class yyDebugSimple : yyDebug
+.    internal class yyDebugSimple : yyDebug
 .        {
 .            void println(string s)
 .            {
