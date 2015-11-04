@@ -34,6 +34,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Grammar\FileParser.cs" />
+    <Compile Include="Grammar\InteractiveParser.cs" />
+    <Compile Include="Grammar\Jay.cs" />
     <Compile Include="Grammar\JayAdapt.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
