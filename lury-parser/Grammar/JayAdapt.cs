@@ -29,17 +29,20 @@
 using System.Collections.Generic;
 
 using LToken = Lury.Compiling.Lexer.Token;
-using PToken = Lury.Compiling.Parser.Token;
+using PFToken = Lury.Compiling.Parser.FileParser.Token;
+using PIToken = Lury.Compiling.Parser.InteractiveParser.Token;
 
 namespace Lury.Compiling.Parser
 {
-    internal class Lex2yyInput : yyParser.yyInput
+    internal class Lex2yyInput : yyInput
     {
-        private IEnumerator<LToken> tokenEnumerator;
+        private readonly IEnumerator<LToken> tokenEnumerator;
+        private readonly bool interactiveMode;
 
-        public Lex2yyInput(IEnumerable<LToken> token)
+        public Lex2yyInput(IEnumerable<LToken> token, bool interactiveMode)
         {
             this.tokenEnumerator = token.GetEnumerator();
+            this.interactiveMode = interactiveMode;
         }
 
         public bool Advance()
@@ -47,9 +50,11 @@ namespace Lury.Compiling.Parser
             return this.tokenEnumerator.MoveNext();
         }
 
-        public yyParser.IToken GetToken()
+        public IToken GetToken()
         {
-            return new Token2yyToken(this.tokenEnumerator.Current);
+            return this.interactiveMode ?
+                (IToken)new Token2InteractiveToken(this.tokenEnumerator.Current) :
+                (IToken)new Token2FileToken(this.tokenEnumerator.Current);
         }
 
         public object GetValue()
@@ -58,7 +63,7 @@ namespace Lury.Compiling.Parser
         }
     }
 
-    internal class Token2yyToken : yyParser.IToken
+    internal abstract class Token2yyToken : IToken
     {
         public LToken Token { get; private set; }
 
@@ -74,119 +79,254 @@ namespace Lury.Compiling.Parser
                 if (this.Token.Entry.Name.Length == 1)
                     return (int)this.Token.Entry.Name[0];
 
-                return tokenMap[this.Token.Entry.Name];
+                return this.TokenMap[this.Token.Entry.Name];
             }
         }
 
+        protected abstract Dictionary<string, int> TokenMap { get; }
+    }
+
+    internal class Token2FileToken : Token2yyToken
+    {
+        public Token2FileToken(LToken token)
+            : base(token)
+        {
+        }
+
+        protected override Dictionary<string, int> TokenMap { get { return tokenMap; } }
+
         #region -- Private Static Fields --
 
-        private readonly Dictionary<string, int> tokenMap = new Dictionary<string, int>()
+        private static readonly Dictionary<string, int> tokenMap = new Dictionary<string, int>()
             {
-                { "NewLine", PToken.NewLine },
-                { "Indent", PToken.Indent },
-                { "Dedent", PToken.Dedent },
-                { "EndOfFile", PToken.NewLine },  // EndOfFile -> NewLine
-                { "IdentifierGet", PToken.IdentifierGet },
-                { "IdentifierSet", PToken.IdentifierSet },
-                { "IdentifierFile", PToken.IdentifierFile },
-                { "IdentifierLine", PToken.IdentifierLine },
-                { "IdentifierExit", PToken.IdentifierExit },
-                { "IdentifierSuccess", PToken.IdentifierSuccess },
-                { "IdentifierFailure", PToken.IdentifierFailure },
-                { "KeywordAbstract", PToken.KeywordAbstract },
-                { "KeywordAnd", PToken.KeywordAnd },
-                { "KeywordBreak", PToken.KeywordBreak },
-                { "KeywordCase", PToken.KeywordCase },
-                { "KeywordCatch", PToken.KeywordCatch },
-                { "KeywordClass", PToken.KeywordClass },
-                { "KeywordContinue", PToken.KeywordContinue },
-                { "KeywordDef", PToken.KeywordDef },
-                { "KeywordDefault", PToken.KeywordDefault },
-                { "KeywordDelete", PToken.KeywordDelete },
-                { "KeywordElif", PToken.KeywordElif },
-                { "KeywordElse", PToken.KeywordElse },
-                { "KeywordEnum", PToken.KeywordEnum },
-                { "KeywordExtended", PToken.KeywordExtended },
-                { "KeywordFalse", PToken.KeywordFalse },
-                { "KeywordFinally", PToken.KeywordFinally },
-                { "KeywordFor", PToken.KeywordFor },
-                { "KeywordIf", PToken.KeywordIf },
-                { "KeywordImport", PToken.KeywordImport },
-                { "KeywordIn", PToken.KeywordIn },
-                { "KeywordInterface", PToken.KeywordInterface },
-                { "KeywordInvariant", PToken.KeywordInvariant },
-                { "KeywordIs", PToken.KeywordIs },
-                { "KeywordLazy", PToken.KeywordLazy },
-                { "KeywordNameof", PToken.KeywordNameof },
-                { "KeywordNew", PToken.KeywordNew },
-                { "KeywordNil", PToken.KeywordNil },
-                { "KeywordNot", PToken.KeywordNot },
-                { "KeywordOr", PToken.KeywordOr },
-                { "KeywordOut", PToken.KeywordOut },
-                { "KeywordOverride", PToken.KeywordOverride },
-                { "KeywordPass", PToken.KeywordPass },
-                { "KeywordPrivate", PToken.KeywordPrivate },
-                { "KeywordProperty", PToken.KeywordProperty },
-                { "KeywordProtected", PToken.KeywordProtected },
-                { "KeywordPublic", PToken.KeywordPublic },
-                { "KeywordRef", PToken.KeywordRef },
-                { "KeywordReflect", PToken.KeywordReflect },
-                { "KeywordReturn", PToken.KeywordReturn },
-                { "KeywordScope", PToken.KeywordScope },
-                { "KeywordSealed", PToken.KeywordSealed },
-                { "KeywordStatic", PToken.KeywordStatic },
-                { "KeywordSuper", PToken.KeywordSuper },
-                { "KeywordSwitch", PToken.KeywordSwitch },
-                { "KeywordThis", PToken.KeywordThis },
-                { "KeywordThrow", PToken.KeywordThrow },
-                { "KeywordTrue", PToken.KeywordTrue },
-                { "KeywordTry", PToken.KeywordTry },
-                { "KeywordUnittest", PToken.KeywordUnittest },
-                { "KeywordUnless", PToken.KeywordUnless },
-                { "KeywordUntil", PToken.KeywordUntil },
-                { "KeywordVar", PToken.KeywordVar },
-                { "KeywordWhile", PToken.KeywordWhile },
-                { "KeywordWith", PToken.KeywordWith },
-                { "KeywordYield", PToken.KeywordYield },
-                { "Identifier", PToken.Identifier },
-                { "StringLiteral", PToken.StringLiteral },
-                { "EmbedStringLiteral", PToken.EmbedStringLiteral },
-                { "WysiwygStringLiteral", PToken.WysiwygStringLiteral },
-                { "ImaginaryNumber", PToken.ImaginaryNumber },
-                { "FloatNumber", PToken.FloatNumber },
-                { "Integer", PToken.Integer },
-                { "RangeOpen", PToken.RangeOpen },
-                { "RangeClose", PToken.RangeClose },
-                { "Increment", PToken.Increment },
-                { "AssignmentAdd", PToken.AssignmentAdd },
-                { "Decrement", PToken.Decrement },
-                { "AssignmentSub", PToken.AssignmentSub },
-                { "AnnotationReturn", PToken.AnnotationReturn },
-                { "AssignmentConcat", PToken.AssignmentConcat },
-                { "AssignmentPower", PToken.AssignmentPower },
-                { "Power", PToken.Power },
-                { "AssignmentMultiply", PToken.AssignmentMultiply },
-                { "AssignmentIntDivide", PToken.AssignmentIntDivide },
-                { "IntDivide", PToken.IntDivide },
-                { "AssignmentDivide", PToken.AssignmentDivide },
-                { "AssignmentModulo", PToken.AssignmentModulo },
-                { "AssignmentLeftShift", PToken.AssignmentLeftShift },
-                { "LeftShift", PToken.LeftShift },
-                { "LessThan", PToken.LessThan },
-                { "AssignmentRightShift", PToken.AssignmentRightShift },
-                { "RightShift", PToken.RightShift },
-                { "MoreThan", PToken.MoreThan },
-                { "Equal", PToken.Equal },
-                { "Lambda", PToken.Lambda },
-                { "NotEqual", PToken.NotEqual },
-                { "NotIn", PToken.NotIn },
-                { "IsNot", PToken.IsNot },
-                { "AndShort", PToken.AndShort },
-                { "AssignmentAnd", PToken.AssignmentAnd },
-                { "AssignmentXor", PToken.AssignmentXor },
-                { "OrShort", PToken.OrShort },
-                { "AssignmentOr", PToken.AssignmentOr },
-                { "NilCoalesce", PToken.NilCoalesce },
+                { "NewLine", PFToken.NewLine },
+                { "Indent", PFToken.Indent },
+                { "Dedent", PFToken.Dedent },
+                { "EndOfFile", PFToken.NewLine },  // EndOfFile -> NewLine
+                { "IdentifierGet", PFToken.IdentifierGet },
+                { "IdentifierSet", PFToken.IdentifierSet },
+                { "IdentifierFile", PFToken.IdentifierFile },
+                { "IdentifierLine", PFToken.IdentifierLine },
+                { "IdentifierExit", PFToken.IdentifierExit },
+                { "IdentifierSuccess", PFToken.IdentifierSuccess },
+                { "IdentifierFailure", PFToken.IdentifierFailure },
+                { "KeywordAbstract", PFToken.KeywordAbstract },
+                { "KeywordAnd", PFToken.KeywordAnd },
+                { "KeywordBreak", PFToken.KeywordBreak },
+                { "KeywordCase", PFToken.KeywordCase },
+                { "KeywordCatch", PFToken.KeywordCatch },
+                { "KeywordClass", PFToken.KeywordClass },
+                { "KeywordContinue", PFToken.KeywordContinue },
+                { "KeywordDef", PFToken.KeywordDef },
+                { "KeywordDefault", PFToken.KeywordDefault },
+                { "KeywordDelete", PFToken.KeywordDelete },
+                { "KeywordElif", PFToken.KeywordElif },
+                { "KeywordElse", PFToken.KeywordElse },
+                { "KeywordEnum", PFToken.KeywordEnum },
+                { "KeywordExtended", PFToken.KeywordExtended },
+                { "KeywordFalse", PFToken.KeywordFalse },
+                { "KeywordFinally", PFToken.KeywordFinally },
+                { "KeywordFor", PFToken.KeywordFor },
+                { "KeywordIf", PFToken.KeywordIf },
+                { "KeywordImport", PFToken.KeywordImport },
+                { "KeywordIn", PFToken.KeywordIn },
+                { "KeywordInterface", PFToken.KeywordInterface },
+                { "KeywordInvariant", PFToken.KeywordInvariant },
+                { "KeywordIs", PFToken.KeywordIs },
+                { "KeywordLazy", PFToken.KeywordLazy },
+                { "KeywordNameof", PFToken.KeywordNameof },
+                { "KeywordNew", PFToken.KeywordNew },
+                { "KeywordNil", PFToken.KeywordNil },
+                { "KeywordNot", PFToken.KeywordNot },
+                { "KeywordOr", PFToken.KeywordOr },
+                { "KeywordOut", PFToken.KeywordOut },
+                { "KeywordOverride", PFToken.KeywordOverride },
+                { "KeywordPass", PFToken.KeywordPass },
+                { "KeywordPrivate", PFToken.KeywordPrivate },
+                { "KeywordProperty", PFToken.KeywordProperty },
+                { "KeywordProtected", PFToken.KeywordProtected },
+                { "KeywordPublic", PFToken.KeywordPublic },
+                { "KeywordRef", PFToken.KeywordRef },
+                { "KeywordReflect", PFToken.KeywordReflect },
+                { "KeywordReturn", PFToken.KeywordReturn },
+                { "KeywordScope", PFToken.KeywordScope },
+                { "KeywordSealed", PFToken.KeywordSealed },
+                { "KeywordStatic", PFToken.KeywordStatic },
+                { "KeywordSuper", PFToken.KeywordSuper },
+                { "KeywordSwitch", PFToken.KeywordSwitch },
+                { "KeywordThis", PFToken.KeywordThis },
+                { "KeywordThrow", PFToken.KeywordThrow },
+                { "KeywordTrue", PFToken.KeywordTrue },
+                { "KeywordTry", PFToken.KeywordTry },
+                { "KeywordUnittest", PFToken.KeywordUnittest },
+                { "KeywordUnless", PFToken.KeywordUnless },
+                { "KeywordUntil", PFToken.KeywordUntil },
+                { "KeywordVar", PFToken.KeywordVar },
+                { "KeywordWhile", PFToken.KeywordWhile },
+                { "KeywordWith", PFToken.KeywordWith },
+                { "KeywordYield", PFToken.KeywordYield },
+                { "Identifier", PFToken.Identifier },
+                { "StringLiteral", PFToken.StringLiteral },
+                { "EmbedStringLiteral", PFToken.EmbedStringLiteral },
+                { "WysiwygStringLiteral", PFToken.WysiwygStringLiteral },
+                { "ImaginaryNumber", PFToken.ImaginaryNumber },
+                { "FloatNumber", PFToken.FloatNumber },
+                { "Integer", PFToken.Integer },
+                { "RangeOpen", PFToken.RangeOpen },
+                { "RangeClose", PFToken.RangeClose },
+                { "Increment", PFToken.Increment },
+                { "AssignmentAdd", PFToken.AssignmentAdd },
+                { "Decrement", PFToken.Decrement },
+                { "AssignmentSub", PFToken.AssignmentSub },
+                { "AnnotationReturn", PFToken.AnnotationReturn },
+                { "AssignmentConcat", PFToken.AssignmentConcat },
+                { "AssignmentPower", PFToken.AssignmentPower },
+                { "Power", PFToken.Power },
+                { "AssignmentMultiply", PFToken.AssignmentMultiply },
+                { "AssignmentIntDivide", PFToken.AssignmentIntDivide },
+                { "IntDivide", PFToken.IntDivide },
+                { "AssignmentDivide", PFToken.AssignmentDivide },
+                { "AssignmentModulo", PFToken.AssignmentModulo },
+                { "AssignmentLeftShift", PFToken.AssignmentLeftShift },
+                { "LeftShift", PFToken.LeftShift },
+                { "LessThan", PFToken.LessThan },
+                { "AssignmentRightShift", PFToken.AssignmentRightShift },
+                { "RightShift", PFToken.RightShift },
+                { "MoreThan", PFToken.MoreThan },
+                { "Equal", PFToken.Equal },
+                { "Lambda", PFToken.Lambda },
+                { "NotEqual", PFToken.NotEqual },
+                { "NotIn", PFToken.NotIn },
+                { "IsNot", PFToken.IsNot },
+                { "AndShort", PFToken.AndShort },
+                { "AssignmentAnd", PFToken.AssignmentAnd },
+                { "AssignmentXor", PFToken.AssignmentXor },
+                { "OrShort", PFToken.OrShort },
+                { "AssignmentOr", PFToken.AssignmentOr },
+                { "NilCoalesce", PFToken.NilCoalesce },
+            };
+
+        #endregion
+    }
+
+    internal class Token2InteractiveToken : Token2yyToken
+    {
+        public Token2InteractiveToken(LToken token)
+            : base(token)
+        {
+        }
+
+        protected override Dictionary<string, int> TokenMap { get { return tokenMap; } }
+
+        #region -- Private Static Fields --
+
+        private static readonly Dictionary<string, int> tokenMap = new Dictionary<string, int>()
+            {
+                { "NewLine", PIToken.NewLine },
+                { "Indent", PIToken.Indent },
+                { "Dedent", PIToken.Dedent },
+                { "EndOfFile", PIToken.NewLine },  // EndOfFile -> NewLine
+                { "IdentifierGet", PIToken.IdentifierGet },
+                { "IdentifierSet", PIToken.IdentifierSet },
+                { "IdentifierFile", PIToken.IdentifierFile },
+                { "IdentifierLine", PIToken.IdentifierLine },
+                { "IdentifierExit", PIToken.IdentifierExit },
+                { "IdentifierSuccess", PIToken.IdentifierSuccess },
+                { "IdentifierFailure", PIToken.IdentifierFailure },
+                { "KeywordAbstract", PIToken.KeywordAbstract },
+                { "KeywordAnd", PIToken.KeywordAnd },
+                { "KeywordBreak", PIToken.KeywordBreak },
+                { "KeywordCase", PIToken.KeywordCase },
+                { "KeywordCatch", PIToken.KeywordCatch },
+                { "KeywordClass", PIToken.KeywordClass },
+                { "KeywordContinue", PIToken.KeywordContinue },
+                { "KeywordDef", PIToken.KeywordDef },
+                { "KeywordDefault", PIToken.KeywordDefault },
+                { "KeywordDelete", PIToken.KeywordDelete },
+                { "KeywordElif", PIToken.KeywordElif },
+                { "KeywordElse", PIToken.KeywordElse },
+                { "KeywordEnum", PIToken.KeywordEnum },
+                { "KeywordExtended", PIToken.KeywordExtended },
+                { "KeywordFalse", PIToken.KeywordFalse },
+                { "KeywordFinally", PIToken.KeywordFinally },
+                { "KeywordFor", PIToken.KeywordFor },
+                { "KeywordIf", PIToken.KeywordIf },
+                { "KeywordImport", PIToken.KeywordImport },
+                { "KeywordIn", PIToken.KeywordIn },
+                { "KeywordInterface", PIToken.KeywordInterface },
+                { "KeywordInvariant", PIToken.KeywordInvariant },
+                { "KeywordIs", PIToken.KeywordIs },
+                { "KeywordLazy", PIToken.KeywordLazy },
+                { "KeywordNameof", PIToken.KeywordNameof },
+                { "KeywordNew", PIToken.KeywordNew },
+                { "KeywordNil", PIToken.KeywordNil },
+                { "KeywordNot", PIToken.KeywordNot },
+                { "KeywordOr", PIToken.KeywordOr },
+                { "KeywordOut", PIToken.KeywordOut },
+                { "KeywordOverride", PIToken.KeywordOverride },
+                { "KeywordPass", PIToken.KeywordPass },
+                { "KeywordPrivate", PIToken.KeywordPrivate },
+                { "KeywordProperty", PIToken.KeywordProperty },
+                { "KeywordProtected", PIToken.KeywordProtected },
+                { "KeywordPublic", PIToken.KeywordPublic },
+                { "KeywordRef", PIToken.KeywordRef },
+                { "KeywordReflect", PIToken.KeywordReflect },
+                { "KeywordReturn", PIToken.KeywordReturn },
+                { "KeywordScope", PIToken.KeywordScope },
+                { "KeywordSealed", PIToken.KeywordSealed },
+                { "KeywordStatic", PIToken.KeywordStatic },
+                { "KeywordSuper", PIToken.KeywordSuper },
+                { "KeywordSwitch", PIToken.KeywordSwitch },
+                { "KeywordThis", PIToken.KeywordThis },
+                { "KeywordThrow", PIToken.KeywordThrow },
+                { "KeywordTrue", PIToken.KeywordTrue },
+                { "KeywordTry", PIToken.KeywordTry },
+                { "KeywordUnittest", PIToken.KeywordUnittest },
+                { "KeywordUnless", PIToken.KeywordUnless },
+                { "KeywordUntil", PIToken.KeywordUntil },
+                { "KeywordVar", PIToken.KeywordVar },
+                { "KeywordWhile", PIToken.KeywordWhile },
+                { "KeywordWith", PIToken.KeywordWith },
+                { "KeywordYield", PIToken.KeywordYield },
+                { "Identifier", PIToken.Identifier },
+                { "StringLiteral", PIToken.StringLiteral },
+                { "EmbedStringLiteral", PIToken.EmbedStringLiteral },
+                { "WysiwygStringLiteral", PIToken.WysiwygStringLiteral },
+                { "ImaginaryNumber", PIToken.ImaginaryNumber },
+                { "FloatNumber", PIToken.FloatNumber },
+                { "Integer", PIToken.Integer },
+                { "RangeOpen", PIToken.RangeOpen },
+                { "RangeClose", PIToken.RangeClose },
+                { "Increment", PIToken.Increment },
+                { "AssignmentAdd", PIToken.AssignmentAdd },
+                { "Decrement", PIToken.Decrement },
+                { "AssignmentSub", PIToken.AssignmentSub },
+                { "AnnotationReturn", PIToken.AnnotationReturn },
+                { "AssignmentConcat", PIToken.AssignmentConcat },
+                { "AssignmentPower", PIToken.AssignmentPower },
+                { "Power", PIToken.Power },
+                { "AssignmentMultiply", PIToken.AssignmentMultiply },
+                { "AssignmentIntDivide", PIToken.AssignmentIntDivide },
+                { "IntDivide", PIToken.IntDivide },
+                { "AssignmentDivide", PIToken.AssignmentDivide },
+                { "AssignmentModulo", PIToken.AssignmentModulo },
+                { "AssignmentLeftShift", PIToken.AssignmentLeftShift },
+                { "LeftShift", PIToken.LeftShift },
+                { "LessThan", PIToken.LessThan },
+                { "AssignmentRightShift", PIToken.AssignmentRightShift },
+                { "RightShift", PIToken.RightShift },
+                { "MoreThan", PIToken.MoreThan },
+                { "Equal", PIToken.Equal },
+                { "Lambda", PIToken.Lambda },
+                { "NotEqual", PIToken.NotEqual },
+                { "NotIn", PIToken.NotIn },
+                { "IsNot", PIToken.IsNot },
+                { "AndShort", PIToken.AndShort },
+                { "AssignmentAnd", PIToken.AssignmentAnd },
+                { "AssignmentXor", PIToken.AssignmentXor },
+                { "OrShort", PIToken.OrShort },
+                { "AssignmentOr", PIToken.AssignmentOr },
+                { "NilCoalesce", PIToken.NilCoalesce },
             };
 
         #endregion
