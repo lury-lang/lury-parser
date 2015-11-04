@@ -39,7 +39,7 @@ using LToken = Lury.Compiling.Lexer.Token;
 
 namespace Lury.Compiling.Parser
 {
-    partial class FileParser
+    internal partial class FileParser
     {
         private int yacc_verbose_flag = 0;
         
@@ -48,19 +48,19 @@ namespace Lury.Compiling.Parser
         /** error output stream.
           * It should be changeable.
           */
-        public System.IO.TextWriter ErrorOutput = System.Console.Out;
+        internal System.IO.TextWriter ErrorOutput = System.Console.Out;
 
         /** simplified error message.
           * @see <a href="#yyerror(java.lang.String, java.lang.String[])">yyerror</a>
           */
-        public void yyerror (string message)
+        internal void yyerror (string message)
         {
             yyerror(message, null);
         }
 
 #pragma warning disable 649
         /* An EOF token */
-        public int eof_token;
+        internal int eof_token;
 #pragma warning restore 649
 
         /** (syntax) error message.
@@ -68,7 +68,7 @@ namespace Lury.Compiling.Parser
           * @param message text to be displayed.
           * @param expected vector of acceptable tokens, if available.
           */
-        public void yyerror(string message, string[] expected)
+        internal void yyerror(string message, string[] expected)
         {
             if ((yacc_verbose_flag > 0) && (expected != null) && (expected.Length  > 0))
             {
@@ -315,7 +315,7 @@ namespace Lury.Compiling.Parser
 //t          * @param token single character or %token value.
 //t          * @return token name or [illegal] or [unknown].
 //t          */
-//t        public static string yyname (int token)
+//t        internal static string yyname (int token)
 //t        {
 //t            if ((token < 0) || (token > yyNames.Length))
 //t                return "[illegal]";
@@ -336,7 +336,7 @@ namespace Lury.Compiling.Parser
           * @param state for which to compute the list.
           * @return list of token names.
           */
-        protected int[] yyExpectingTokens(int state)
+        internal int[] yyExpectingTokens(int state)
         {
             int token, n, len = 0;
             bool[] ok = new bool[yyNames.Length];
@@ -365,7 +365,7 @@ namespace Lury.Compiling.Parser
             return result;
         }
 
-        protected string[] yyExpecting(int state)
+        internal string[] yyExpecting(int state)
         {
             int[] tokens = yyExpectingTokens(state);
             string[] result = new string[tokens.Length];
@@ -383,7 +383,7 @@ namespace Lury.Compiling.Parser
           * @return result of the last reduction, if any.
           * @throws yyException on irrecoverable parse error.
           */
-        internal Object yyparse(yyParser.yyInput yyLex, yydebug.yyDebug yyd)
+        internal Object yyparse(yyInput yyLex, yyDebug yyd)
         {
 //t            this.debug = yyd;
             return yyparse(yyLex);
@@ -393,7 +393,7 @@ namespace Lury.Compiling.Parser
           * This is not final so that it can be overwritten outside of invocations
           * of yyparse().
           */
-        protected int yyMax;
+        internal int yyMax;
 
         /** executed at the beginning of a reduce action.
           * Used as $$ = yyDefault($1), prior to the user-specified action, if any.
@@ -401,7 +401,7 @@ namespace Lury.Compiling.Parser
           * @param first value for $1, or null.
           * @return first.
           */
-        protected Object yyDefault(Object first)
+        internal Object yyDefault(Object first)
         {
             return first;
         }
@@ -409,13 +409,13 @@ namespace Lury.Compiling.Parser
         static int[] global_yyStates;
         static object[] global_yyVals;
 #pragma warning disable 649
-        protected bool use_global_stacks;
+        bool use_global_stacks;
 #pragma warning restore 649
         object[] yyVals;					// value stack
         object yyVal;						// value stack ptr
         int yyToken;						// current input
         int yyTop;
-        yyParser.IToken currentToken;
+        IToken currentToken;
 
         /** the generated parser.
           * Maintains a state and a value stack, currently with fixed maximum size.
@@ -423,7 +423,7 @@ namespace Lury.Compiling.Parser
           * @return result of the last reduction, if any.
           * @throws yyException on irrecoverable parse error.
           */
-        internal Object yyparse (yyParser.yyInput yyLex)
+        internal Object yyparse (yyInput yyLex)
         {
             if (yyMax <= 0)
                 yyMax = 256;		            // initial size
@@ -514,7 +514,7 @@ namespace Lury.Compiling.Parser
 //t                                    debug.error("syntax error");
 
                                 if (yyToken == 0 /*eof*/ || yyToken == eof_token)
-                                    throw new yyParser.yyUnexpectedEof(currentToken);
+                                    throw new yyUnexpectedEof(currentToken);
 
                                 goto case 1;
 
@@ -544,7 +544,7 @@ namespace Lury.Compiling.Parser
 //t                                if (debug != null)
 //t                                    debug.reject();
 
-                                throw new yyParser.yySyntaxError("irrecoverable syntax error", currentToken);
+                                throw new yySyntaxError("irrecoverable syntax error", currentToken);
 
                             case 3:
                                 if (yyToken == 0)
@@ -552,7 +552,7 @@ namespace Lury.Compiling.Parser
 //t                                    if (debug != null)
 //t                                        debug.reject();
 //t
-                                    throw new yyParser.yySyntaxErrorAtEof("irrecoverable syntax error at end-of-file",
+                                    throw new yySyntaxErrorAtEof("irrecoverable syntax error at end-of-file",
                                                                           currentToken);
                                 }
 
@@ -2379,280 +2379,119 @@ void case_148()
    -1,  334,
   };
 
-#line 768 "FileParser.jay"
+        // %token constants
+        internal class Token
+        {
+            public const int NewLine = 257;
+            public const int Indent = 258;
+            public const int Dedent = 259;
+            public const int EndOfFile = 260;
+            public const int IdentifierGet = 261;
+            public const int IdentifierSet = 262;
+            public const int IdentifierFile = 263;
+            public const int IdentifierLine = 264;
+            public const int IdentifierExit = 265;
+            public const int IdentifierSuccess = 266;
+            public const int IdentifierFailure = 267;
+            public const int KeywordAbstract = 268;
+            public const int KeywordAnd = 269;
+            public const int KeywordBreak = 270;
+            public const int KeywordCase = 271;
+            public const int KeywordCatch = 272;
+            public const int KeywordClass = 273;
+            public const int KeywordContinue = 274;
+            public const int KeywordDef = 275;
+            public const int KeywordDefault = 276;
+            public const int KeywordDelete = 277;
+            public const int KeywordElif = 278;
+            public const int KeywordElse = 279;
+            public const int KeywordEnum = 280;
+            public const int KeywordExtended = 281;
+            public const int KeywordFalse = 282;
+            public const int KeywordFinally = 283;
+            public const int KeywordFor = 284;
+            public const int KeywordIf = 285;
+            public const int KeywordImport = 286;
+            public const int KeywordIn = 287;
+            public const int KeywordInterface = 288;
+            public const int KeywordInvariant = 289;
+            public const int KeywordIs = 290;
+            public const int KeywordLazy = 291;
+            public const int KeywordNameof = 292;
+            public const int KeywordNew = 293;
+            public const int KeywordNil = 294;
+            public const int KeywordNot = 295;
+            public const int KeywordOr = 296;
+            public const int KeywordOut = 297;
+            public const int KeywordOverride = 298;
+            public const int KeywordPass = 299;
+            public const int KeywordPrivate = 300;
+            public const int KeywordProperty = 301;
+            public const int KeywordProtected = 302;
+            public const int KeywordPublic = 303;
+            public const int KeywordRef = 304;
+            public const int KeywordReflect = 305;
+            public const int KeywordReturn = 306;
+            public const int KeywordScope = 307;
+            public const int KeywordSealed = 308;
+            public const int KeywordStatic = 309;
+            public const int KeywordSuper = 310;
+            public const int KeywordSwitch = 311;
+            public const int KeywordThis = 312;
+            public const int KeywordThrow = 313;
+            public const int KeywordTrue = 314;
+            public const int KeywordTry = 315;
+            public const int KeywordUnittest = 316;
+            public const int KeywordUnless = 317;
+            public const int KeywordUntil = 318;
+            public const int KeywordVar = 319;
+            public const int KeywordWhile = 320;
+            public const int KeywordWith = 321;
+            public const int KeywordYield = 322;
+            public const int Identifier = 323;
+            public const int StringLiteral = 324;
+            public const int EmbedStringLiteral = 325;
+            public const int WysiwygStringLiteral = 326;
+            public const int ImaginaryNumber = 327;
+            public const int FloatNumber = 328;
+            public const int Integer = 329;
+            public const int RangeOpen = 330;
+            public const int RangeClose = 331;
+            public const int Increment = 332;
+            public const int AssignmentAdd = 333;
+            public const int Decrement = 334;
+            public const int AssignmentSub = 335;
+            public const int AnnotationReturn = 336;
+            public const int AssignmentConcat = 337;
+            public const int AssignmentPower = 338;
+            public const int Power = 339;
+            public const int AssignmentMultiply = 340;
+            public const int AssignmentIntDivide = 341;
+            public const int IntDivide = 342;
+            public const int AssignmentDivide = 343;
+            public const int AssignmentModulo = 344;
+            public const int AssignmentLeftShift = 345;
+            public const int LeftShift = 346;
+            public const int LessThan = 347;
+            public const int AssignmentRightShift = 348;
+            public const int RightShift = 349;
+            public const int MoreThan = 350;
+            public const int Equal = 351;
+            public const int Lambda = 352;
+            public const int NotEqual = 353;
+            public const int NotIn = 354;
+            public const int IsNot = 355;
+            public const int AndShort = 356;
+            public const int AssignmentAnd = 357;
+            public const int AssignmentXor = 358;
+            public const int OrShort = 359;
+            public const int AssignmentOr = 360;
+            public const int NilCoalesce = 361;
+            public const int yyErrorCode = 256;
         }
+
+#line 768 "FileParser.jay"
+    }
 #line default
 
-    namespace yydebug
-    {
-        using System;
-
-        internal interface yyDebug
-        {
-            void push(int state, Object value);
-            void lex(int state, int token, string name, Object value);
-            void shift(int from, int to, int errorFlag);
-            void pop(int state);
-            void discard(int state, int token, string name, Object value);
-            void reduce(int from, int to, int rule, string text, int len);
-            void shift(int from, int to);
-            void accept(Object value);
-            void error(string message);
-            void reject();
-        }
-
-        class yyDebugSimple : yyDebug
-        {
-            void println(string s)
-            {
-                Console.Error.WriteLine(s);
-            }
-
-            public void push(int state, Object value)
-            {
-                println("push\tstate " + state + "\tvalue " + value);
-            }
-
-            public void lex(int state, int token, string name, Object value)
-            {
-                println("lex\tstate " + state + "\treading " + name + "\tvalue " + value);
-            }
-
-            public void shift(int from, int to, int errorFlag)
-            {
-                switch (errorFlag)
-                {
-                default:				// normally
-                    println("shift\tfrom state " + from + " to " + to);
-                    break;
-
-                case 0:
-                case 1:
-                case 2:		// in error recovery
-                    println("shift\tfrom state " + from + " to " + to + "\t" + errorFlag + " left to recover");
-                    break;
-
-                case 3:				// normally
-                    println("shift\tfrom state "+from+" to "+to+"\ton error");
-                    break;
-                }
-            }
-
-            public void pop(int state)
-            {
-                println("pop\tstate " + state + "\ton error");
-            }
-
-            public void discard(int state, int token, string name, Object value)
-            {
-                println("discard\tstate " + state + "\ttoken " + name + "\tvalue " + value);
-            }
-
-            public void reduce(int from, int to, int rule, string text, int len)
-            {
-                println("reduce\tstate " + from + "\tuncover " + to + "\trule (" + rule + ") " + text);
-            }
-
-            public void shift(int from, int to)
-            {
-                println("goto\tfrom state " + from + " to " + to);
-            }
-
-            public void accept(Object value)
-            {
-                println("accept\tvalue " + value);
-            }
-
-            public void error(string message)
-            {
-                println("error\t" + message);
-            }
-
-            public void reject()
-            {
-                println("reject");
-            }
-        }
-    }
-
-    // %token constants
-    internal class Token
-    {
-        public const int NewLine = 257;
-        public const int Indent = 258;
-        public const int Dedent = 259;
-        public const int EndOfFile = 260;
-        public const int IdentifierGet = 261;
-        public const int IdentifierSet = 262;
-        public const int IdentifierFile = 263;
-        public const int IdentifierLine = 264;
-        public const int IdentifierExit = 265;
-        public const int IdentifierSuccess = 266;
-        public const int IdentifierFailure = 267;
-        public const int KeywordAbstract = 268;
-        public const int KeywordAnd = 269;
-        public const int KeywordBreak = 270;
-        public const int KeywordCase = 271;
-        public const int KeywordCatch = 272;
-        public const int KeywordClass = 273;
-        public const int KeywordContinue = 274;
-        public const int KeywordDef = 275;
-        public const int KeywordDefault = 276;
-        public const int KeywordDelete = 277;
-        public const int KeywordElif = 278;
-        public const int KeywordElse = 279;
-        public const int KeywordEnum = 280;
-        public const int KeywordExtended = 281;
-        public const int KeywordFalse = 282;
-        public const int KeywordFinally = 283;
-        public const int KeywordFor = 284;
-        public const int KeywordIf = 285;
-        public const int KeywordImport = 286;
-        public const int KeywordIn = 287;
-        public const int KeywordInterface = 288;
-        public const int KeywordInvariant = 289;
-        public const int KeywordIs = 290;
-        public const int KeywordLazy = 291;
-        public const int KeywordNameof = 292;
-        public const int KeywordNew = 293;
-        public const int KeywordNil = 294;
-        public const int KeywordNot = 295;
-        public const int KeywordOr = 296;
-        public const int KeywordOut = 297;
-        public const int KeywordOverride = 298;
-        public const int KeywordPass = 299;
-        public const int KeywordPrivate = 300;
-        public const int KeywordProperty = 301;
-        public const int KeywordProtected = 302;
-        public const int KeywordPublic = 303;
-        public const int KeywordRef = 304;
-        public const int KeywordReflect = 305;
-        public const int KeywordReturn = 306;
-        public const int KeywordScope = 307;
-        public const int KeywordSealed = 308;
-        public const int KeywordStatic = 309;
-        public const int KeywordSuper = 310;
-        public const int KeywordSwitch = 311;
-        public const int KeywordThis = 312;
-        public const int KeywordThrow = 313;
-        public const int KeywordTrue = 314;
-        public const int KeywordTry = 315;
-        public const int KeywordUnittest = 316;
-        public const int KeywordUnless = 317;
-        public const int KeywordUntil = 318;
-        public const int KeywordVar = 319;
-        public const int KeywordWhile = 320;
-        public const int KeywordWith = 321;
-        public const int KeywordYield = 322;
-        public const int Identifier = 323;
-        public const int StringLiteral = 324;
-        public const int EmbedStringLiteral = 325;
-        public const int WysiwygStringLiteral = 326;
-        public const int ImaginaryNumber = 327;
-        public const int FloatNumber = 328;
-        public const int Integer = 329;
-        public const int RangeOpen = 330;
-        public const int RangeClose = 331;
-        public const int Increment = 332;
-        public const int AssignmentAdd = 333;
-        public const int Decrement = 334;
-        public const int AssignmentSub = 335;
-        public const int AnnotationReturn = 336;
-        public const int AssignmentConcat = 337;
-        public const int AssignmentPower = 338;
-        public const int Power = 339;
-        public const int AssignmentMultiply = 340;
-        public const int AssignmentIntDivide = 341;
-        public const int IntDivide = 342;
-        public const int AssignmentDivide = 343;
-        public const int AssignmentModulo = 344;
-        public const int AssignmentLeftShift = 345;
-        public const int LeftShift = 346;
-        public const int LessThan = 347;
-        public const int AssignmentRightShift = 348;
-        public const int RightShift = 349;
-        public const int MoreThan = 350;
-        public const int Equal = 351;
-        public const int Lambda = 352;
-        public const int NotEqual = 353;
-        public const int NotIn = 354;
-        public const int IsNot = 355;
-        public const int AndShort = 356;
-        public const int AssignmentAnd = 357;
-        public const int AssignmentXor = 358;
-        public const int OrShort = 359;
-        public const int AssignmentOr = 360;
-        public const int NilCoalesce = 361;
-        public const int yyErrorCode = 256;
-    }
-
-    namespace yyParser
-    {
-        using System;
-
-        /** thrown for irrecoverable syntax errors and stack overflow.
-          */
-        internal class yyException : System.Exception
-        {
-            public IToken Token { get; private set; }
-
-            public yyException (string message, IToken token)
-                : base (message)
-            {
-                this.Token = token;
-            }
-        }
-
-        internal class yySyntaxError : yyException
-        {
-            public yySyntaxError (string message, IToken token)
-                : base (message, token)
-            {
-            }
-        }
-
-        internal class yySyntaxErrorAtEof : yyException
-        {
-            public yySyntaxErrorAtEof (string message, IToken token)
-                : base (message, token)
-            {
-            }
-        }
-
-        internal class yyUnexpectedEof : yyException
-        {
-            public yyUnexpectedEof (IToken token)
-                : base (null, token)
-            {
-            }
-        }
-
-        /** must be implemented by a scanner object to supply input to the parser.
-          */
-        internal interface yyInput
-         {
-            /** move on to next token.
-              * @return false if positioned beyond tokens.
-              * @throws IOException on input error.
-              */
-            bool Advance(); // throws java.io.IOException;
-
-            /** classifies current token.
-              * Should not be called if advance() returned false.
-              * @return current %token or single character.
-              */
-            IToken GetToken();
-
-            /** associated with current token.
-              * Should not be called if advance() returned false.
-              * @return value for token().
-              */
-            Object GetValue ();
-        }
-
-        internal interface IToken
-        {
-            int TokenNumber { get; }
-        }
-    }
 } // close outermost namespace, that MUST HAVE BEEN opened in the prolog
