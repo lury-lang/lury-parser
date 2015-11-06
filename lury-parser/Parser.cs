@@ -61,16 +61,19 @@ namespace Lury.Compiling.Parser
 
         public bool IsFinished { get; private set; }
 
+        public bool InteractiveMode { get; private set; }
+
         #endregion
 
         #region -- Constructors --
 
-        public Parser(IEnumerable<LToken> input)
+        public Parser(IEnumerable<LToken> input, bool interactiveMode = false)
         {
             if (input == null)
                 throw new ArgumentNullException("input");
 
             this.input = input;
+            this.InteractiveMode = interactiveMode;
         }
 
         #endregion
@@ -84,7 +87,7 @@ namespace Lury.Compiling.Parser
 
             var parser = new FileParser();
 
-            this.output = (IReadOnlyList<Node>)parser.yyparse(new Lex2yyInput(this.input));
+            this.output = (IReadOnlyList<Node>)parser.yyparse(new Lex2yyInput(this.input, this.InteractiveMode));
 
             this.IsFinished = true;
             return true;
