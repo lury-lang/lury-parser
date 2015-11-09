@@ -107,6 +107,10 @@ statement
         {
             $$ = new Node[] { (Node)$1 };
         }
+    | compound_statement NewLine
+        {
+            $$ = new Node[] { (Node)$1 };
+        }
 
 statement_list
     : simple_statement
