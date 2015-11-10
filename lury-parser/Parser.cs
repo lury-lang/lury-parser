@@ -85,10 +85,15 @@ namespace Lury.Compiling.Parser
             if (this.IsFinished)
                 throw new InvalidOperationException("Parsing is already finished.");
 
-            var parser = new FileParser();
-
-            this.output = (IReadOnlyList<Node>)parser.yyparse(new Lex2yyInput(this.input, this.InteractiveMode));
-
+            if (this.InteractiveMode)
+            {
+                this.output = (IReadOnlyList<Node>)new InteractiveParser().yyparse(new Lex2yyInput(this.input, this.InteractiveMode));
+            }
+            else
+            {
+                this.output = (IReadOnlyList<Node>)new FileParser().yyparse(new Lex2yyInput(this.input, this.InteractiveMode));
+            }
+            
             this.IsFinished = true;
             return true;
         }
