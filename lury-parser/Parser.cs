@@ -51,7 +51,7 @@ namespace Lury.Compiling.Parser
             get
             {
                 if (!this.IsFinished)
-                    throw new InvalidOperationException("先に Parse メソッドを実行してください。");
+                    throw new InvalidOperationException("Please execute method Parse before you access this property.");
 
                 return this.output;
             }
