@@ -35,6 +35,19 @@ using LToken = Lury.Compiling.Lexer.Token;
 
 namespace Lury.Compiling.Parser
 {
+    /// <summary>
+    /// 字句列を入力として構文構造を解析します。
+    /// </summary>
+    /// <remarks>
+    /// <see cref="Parser"/> クラスは字句解析の結果である字句列を入力として、構文解析を行い、
+    /// 字句列に対応する一意の構文木を生成します。字句列は <see cref="Lury.Compiling.Lexer.Token"/> オブジェクトを
+    /// 列挙可能なオブジェクトとして入力します。出力となる構文木は <see cref="Node"/> オブジェクトの読み取り専用のリストとして、
+    /// <see cref="Parser.TreeOutput"/> プロパティに格納されます。<see cref="Parser.TreeOutput"/> プロパティを呼び出す前に、
+    /// <see cref="Parser.Parse"/> メソッドを実行する必要があります。
+    /// 
+    /// インタラクティブモードは、対話型アプリケーションで使用される場合に用いられます。
+    /// このモードでは、1 回の入力で最大で 1 つの文構造を入力できます。
+    /// </remarks>
     public class Parser
     {
         #region -- Private Fields --
@@ -46,6 +59,12 @@ namespace Lury.Compiling.Parser
 
         #region -- Public Properties --
 
+        /// <summary>
+        /// 構文解析の結果、出力された構文木 <see cref="Node"/> オブジェクトの読み取り専用のリストを取得します。
+        /// </summary>
+        /// <exception cref="InvalidOperationException">
+        /// <see cref="Parser.Parse"/> メソッドが実行される前にプロパティにアクセスされました。
+        /// </exception>
         public IReadOnlyList<Node> TreeOutput
         {
             get
@@ -57,16 +76,33 @@ namespace Lury.Compiling.Parser
             }
         }
 
+        /// <summary>
+        /// 構文解析時に用いられたロガーを表す <see cref="OutputLogger"/> オブジェクトを取得します。
+        /// </summary>
         public OutputLogger Logger { get; private set; }
 
+        /// <summary>
+        /// 構文解析が終了したかを表す真偽値を取得します。
+        /// </summary>
         public bool IsFinished { get; private set; }
 
+        /// <summary>
+        /// 構文解析器がインタラクティブモードであるかを表す真偽値を取得します。
+        /// </summary>
         public bool InteractiveMode { get; private set; }
 
         #endregion
 
         #region -- Constructors --
 
+        /// <summary>
+        /// 解析される字句列を指定して新しい <see cref="Parser"/> クラスのインスタンスを初期化します。
+        /// </summary>
+        /// <param name="input">
+        /// 構文解析される字句列を表す <see cref="Lury.Compiling.Lexer.Token"/> オブジェクトの列挙子。
+        /// </param>
+        /// <param name="interactiveMode">インタラクティブモードとして構文解析を行うかを表す真偽値。</param>
+        /// <exception cref="ArgumentNullException">パラメータ input が null です。</exception>
         public Parser(IEnumerable<LToken> input, bool interactiveMode = false)
         {
             if (input == null)
@@ -80,6 +116,10 @@ namespace Lury.Compiling.Parser
 
         #region -- Public Methods --
 
+        /// <summary>
+        /// 構文解析を行い、結果を <see cref="Parser.TreeOutput"/> に格納します。
+        /// </summary>
+        /// <returns>エラーが報告されず正常に解析が終了した時 true、それ以外のとき false。</returns>
         public bool Parse()
         {
             if (this.IsFinished)
