@@ -72,6 +72,16 @@ namespace UnitTest
         }
 
         [TestMethod]
+        public void ParseTest3()
+        {
+            var lexer = new Lexer("", @"pass; pass");
+            lexer.Tokenize();
+
+            var parser = new Parser(lexer.TokenOutput, true);
+            parser.Parse();
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void ParseTestError()
         {
