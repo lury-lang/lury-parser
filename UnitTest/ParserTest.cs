@@ -25,7 +25,7 @@ namespace UnitTest
 
             var parser = new Parser(lexer.TokenOutput);
 
-            // thrown
+            // thrown: The parsing is not yet started / finished!
             var parserOutput = parser.TreeOutput;
         }
 
@@ -76,6 +76,9 @@ namespace UnitTest
 
             var parser = new Parser(lexer.TokenOutput, true);
             parser.Parse();
+
+            Assert.IsNotNull(parser.TreeOutput);
+            Assert.AreEqual(2, parser.TreeOutput.Count);
         }
 
         [TestMethod]
@@ -88,7 +91,7 @@ namespace UnitTest
             var parser = new Parser(lexer.TokenOutput);
             parser.Parse();
 
-            // thrown
+            // thrown: The parsing is already finished!
             parser.Parse();
         }
     }
