@@ -12,9 +12,6 @@ namespace UnitTest
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorTestError()
         {
-            var lexer = new Lexer("", @"");
-            lexer.Tokenize();
-
             // thrown
             var parser = new Parser(null);
         }
@@ -37,9 +34,9 @@ namespace UnitTest
         {
             var lexer = new Lexer("", @"");
             lexer.Tokenize();
-            
+
             var parser = new Parser(lexer.TokenOutput);
-            
+
             Assert.IsFalse(parser.IsFinished);
             parser.Parse();
             Assert.IsTrue(parser.IsFinished);
@@ -50,7 +47,7 @@ namespace UnitTest
         {
             var lexer = new Lexer("", @"");
             lexer.Tokenize();
-            
+
             var parser = new Parser(lexer.TokenOutput);
             parser.Parse();
 
