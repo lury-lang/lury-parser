@@ -10,7 +10,7 @@ namespace UnitTest
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void ConstructorTestError()
+        public void ConstructorError()
         {
             // thrown
             var parser = new Parser(null);
@@ -18,7 +18,7 @@ namespace UnitTest
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void TreeOutputTestError()
+        public void TreeOutputError()
         {
             var lexer = new Lexer("", @"");
             lexer.Tokenize();
@@ -83,7 +83,7 @@ namespace UnitTest
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void ParseTestError()
+        public void ParseError()
         {
             var lexer = new Lexer("", @"");
             lexer.Tokenize();
