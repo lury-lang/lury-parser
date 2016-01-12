@@ -110,6 +110,7 @@ namespace Lury.Compiling.Parser
 
             this.input = input;
             this.InteractiveMode = interactiveMode;
+            this.Logger = new OutputLogger();
         }
 
         #endregion
