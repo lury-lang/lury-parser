@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Lury.Compiling.Lexer;
 using Lury.Compiling.Parser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -40,6 +41,7 @@ namespace UnitTest
             Assert.IsFalse(parser.IsFinished);
             parser.Parse();
             Assert.IsTrue(parser.IsFinished);
+            Assert.AreEqual(0, parser.Logger.Outputs.Count());
         }
 
         [TestMethod]
@@ -53,6 +55,7 @@ namespace UnitTest
 
             Assert.IsNotNull(parser.TreeOutput);
             Assert.AreEqual(0, parser.TreeOutput.Count);
+            Assert.AreEqual(0, parser.Logger.Outputs.Count());
         }
 
         [TestMethod]
@@ -66,6 +69,7 @@ namespace UnitTest
 
             Assert.IsNotNull(parser.TreeOutput);
             Assert.AreEqual(1, parser.TreeOutput.Count);
+            Assert.AreEqual(0, parser.Logger.Outputs.Count());
         }
 
         [TestMethod]
@@ -79,6 +83,7 @@ namespace UnitTest
 
             Assert.IsNotNull(parser.TreeOutput);
             Assert.AreEqual(2, parser.TreeOutput.Count);
+            Assert.AreEqual(0, parser.Logger.Outputs.Count());
         }
 
         [TestMethod]
