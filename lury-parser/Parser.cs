@@ -28,8 +28,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Lury.Compiling.Logger;
 using Lury.Compiling.Parser.Tree;
+using Lury.Compiling.Utils;
 
 using LToken = Lury.Compiling.Lexer.Token;
 
@@ -126,17 +128,59 @@ namespace Lury.Compiling.Parser
             if (this.IsFinished)
                 throw new InvalidOperationException("Parsing is already finished.");
 
-            if (this.InteractiveMode)
+            try
             {
-                this.output = (IReadOnlyList<Node>)new InteractiveParser().yyparse(new Lex2yyInput(this.input, this.InteractiveMode));
+                if (this.InteractiveMode)
+                {
+                    this.output = (IReadOnlyList<Node>)new InteractiveParser().yyparse(new Lex2yyInput(this.input, this.InteractiveMode));
+                }
+                else
+                {
+                    this.output = (IReadOnlyList<Node>)new FileParser().yyparse(new Lex2yyInput(this.input, this.InteractiveMode));
+                }
+
+                return true;
             }
-            else
+            catch (yyException ex)
             {
-                this.output = (IReadOnlyList<Node>)new FileParser().yyparse(new Lex2yyInput(this.input, this.InteractiveMode));
+                this.ReportException(ex);
+                return false;
             }
-            
-            this.IsFinished = true;
-            return true;
+            finally
+            {
+                this.IsFinished = true;
+            }
+        }
+
+        #endregion
+
+        #region -- Private Methods --
+
+        private void ReportException(yyException ex)
+        {
+            if (ex is yySyntaxError)
+            {
+                LToken token = ((Token2yyToken)ex.Token).Token;
+
+                this.Logger.ReportError(
+                    ParserError.SyntaxError,
+                    token.Text,
+                    token.SourceCode,
+                    token.Position,
+                    string.Join("\n", token.SourceCode.GeneratePointingStrings(token.Position.Position, token.Length)));
+            }
+            else if (ex is yyUnexpectedEof)
+            {
+                var lastToken = this.input.Last();
+                this.Logger.ReportError(
+                    ParserError.UnexpectedEOF,
+                    null,
+                    lastToken.SourceCode,
+                    lastToken.Position,
+                    string.Join("\n", lastToken.SourceCode.GeneratePointingStrings(lastToken.Position.Position, 0)));
+            }
+
+            // WIP
         }
 
         #endregion
