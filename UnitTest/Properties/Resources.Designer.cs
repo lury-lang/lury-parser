@@ -182,6 +182,28 @@ namespace UnitTest.Properties {
         }
         
         /// <summary>
+        ///   if: pass
+        ///elif a: pass
+        ///else: pass に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SyntaxError000d {
+            get {
+                return ResourceManager.GetString("SyntaxError000d", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   if a: pass
+        ///elif: pass
+        ///else: pass に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SyntaxError000e {
+            get {
+                return ResourceManager.GetString("SyntaxError000e", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   if a: に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string UnexpectedEOF0001 {
@@ -197,6 +219,17 @@ namespace UnitTest.Properties {
         internal static string UnexpectedEOF0002 {
             get {
                 return ResourceManager.GetString("UnexpectedEOF0002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   if a: pass
+        ///elif a: pass
+        ///else: に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string UnexpectedEOF0003 {
+            get {
+                return ResourceManager.GetString("UnexpectedEOF0003", resourceCulture);
             }
         }
     }

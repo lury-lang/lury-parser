@@ -166,11 +166,26 @@ else:</value>
     <value>if: pass
 else:</value>
   </data>
+  <data name="SyntaxError000d" xml:space="preserve">
+    <value>if: pass
+elif a: pass
+else: pass</value>
+  </data>
+  <data name="SyntaxError000e" xml:space="preserve">
+    <value>if a: pass
+elif: pass
+else: pass</value>
+  </data>
   <data name="UnexpectedEOF0001" xml:space="preserve">
     <value>if a:</value>
   </data>
   <data name="UnexpectedEOF0002" xml:space="preserve">
     <value>if a: pass
 elif a:</value>
+  </data>
+  <data name="UnexpectedEOF0003" xml:space="preserve">
+    <value>if a: pass
+elif a: pass
+else:</value>
   </data>
 </root>
