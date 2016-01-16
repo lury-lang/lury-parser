@@ -125,6 +125,9 @@
     <value>if if:
   pass</value>
   </data>
+  <data name="SyntaxError0002" xml:space="preserve">
+    <value>if</value>
+  </data>
   <data name="SyntaxError0003" xml:space="preserve">
     <value>if pass</value>
   </data>
@@ -176,6 +179,38 @@ else: pass</value>
 elif: pass
 else: pass</value>
   </data>
+  <data name="SyntaxError000f" xml:space="preserve">
+    <value>if a: pass
+else: pass
+else: pass</value>
+  </data>
+  <data name="SyntaxError0010" xml:space="preserve">
+    <value>if a: pass
+else: pass
+elif a: pass</value>
+  </data>
+  <data name="SyntaxError0011" xml:space="preserve">
+    <value>if a: pass
+elif a: pass
+else: pass
+elif a: pass</value>
+  </data>
+  <data name="SyntaxError0012" xml:space="preserve">
+    <value>if a</value>
+  </data>
+  <data name="SyntaxError0100" xml:space="preserve">
+    <value>while</value>
+  </data>
+  <data name="SyntaxError0101" xml:space="preserve">
+    <value>while:</value>
+  </data>
+  <data name="SyntaxError0102" xml:space="preserve">
+    <value>while a</value>
+  </data>
+  <data name="SyntaxError0103" xml:space="preserve">
+    <value>while:
+else: pass</value>
+  </data>
   <data name="UnexpectedEOF0001" xml:space="preserve">
     <value>if a:</value>
   </data>
@@ -186,6 +221,17 @@ elif a:</value>
   <data name="UnexpectedEOF0003" xml:space="preserve">
     <value>if a: pass
 elif a: pass
+else:</value>
+  </data>
+  <data name="UnexpectedEOF0100" xml:space="preserve">
+    <value>while a: pass
+else:</value>
+  </data>
+  <data name="UnexpectedEOF0101" xml:space="preserve">
+    <value>while a:</value>
+  </data>
+  <data name="UnexpectedEOF0102" xml:space="preserve">
+    <value>while a: pass
 else:</value>
   </data>
 </root>

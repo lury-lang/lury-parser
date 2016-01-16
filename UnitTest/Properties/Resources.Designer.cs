@@ -204,6 +204,49 @@ namespace UnitTest.Properties {
         }
         
         /// <summary>
+        ///   if a: pass
+        ///else: pass
+        ///else: pass に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SyntaxError000f {
+            get {
+                return ResourceManager.GetString("SyntaxError000f", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   if a: pass
+        ///else: pass
+        ///elif a: pass に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SyntaxError0010 {
+            get {
+                return ResourceManager.GetString("SyntaxError0010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   if a: pass
+        ///elif a: pass
+        ///else: pass
+        ///elif a: pass に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SyntaxError0011 {
+            get {
+                return ResourceManager.GetString("SyntaxError0011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   if に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SyntaxError0002 {
+            get {
+                return ResourceManager.GetString("UnexpectedEOF0000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   if a: に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string UnexpectedEOF0001 {
