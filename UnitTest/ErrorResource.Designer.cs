@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UnitTest.Properties {
+namespace UnitTest {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace UnitTest.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    internal class ErrorResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal ErrorResource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace UnitTest.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("UnitTest.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("UnitTest.ErrorResource", typeof(ErrorResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -77,6 +77,15 @@ namespace UnitTest.Properties {
         internal static string SyntaxError0001 {
             get {
                 return ResourceManager.GetString("SyntaxError0001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   if に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SyntaxError0002 {
+            get {
+                return ResourceManager.GetString("SyntaxError0002", resourceCulture);
             }
         }
         
@@ -238,11 +247,48 @@ namespace UnitTest.Properties {
         }
         
         /// <summary>
-        ///   if に類似しているローカライズされた文字列を検索します。
+        ///   if a に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string SyntaxError0002 {
+        internal static string SyntaxError0012 {
             get {
-                return ResourceManager.GetString("UnexpectedEOF0000", resourceCulture);
+                return ResourceManager.GetString("SyntaxError0012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   while に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SyntaxError0100 {
+            get {
+                return ResourceManager.GetString("SyntaxError0100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   while: に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SyntaxError0101 {
+            get {
+                return ResourceManager.GetString("SyntaxError0101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   while a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SyntaxError0102 {
+            get {
+                return ResourceManager.GetString("SyntaxError0102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   while:
+        ///else: pass に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SyntaxError0103 {
+            get {
+                return ResourceManager.GetString("SyntaxError0103", resourceCulture);
             }
         }
         
@@ -273,6 +319,35 @@ namespace UnitTest.Properties {
         internal static string UnexpectedEOF0003 {
             get {
                 return ResourceManager.GetString("UnexpectedEOF0003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   while a: pass
+        ///else: に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string UnexpectedEOF0100 {
+            get {
+                return ResourceManager.GetString("UnexpectedEOF0100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   while a: に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string UnexpectedEOF0101 {
+            get {
+                return ResourceManager.GetString("UnexpectedEOF0101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   while a: pass
+        ///else: に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string UnexpectedEOF0102 {
+            get {
+                return ResourceManager.GetString("UnexpectedEOF0102", resourceCulture);
             }
         }
     }

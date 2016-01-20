@@ -1,7 +1,6 @@
 ﻿using Lury.Compiling.Lexer;
 using Lury.Compiling.Parser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using UnitTest.Properties;
 using System.Linq;
 using System.Collections;
 using System.Globalization;
@@ -15,7 +14,7 @@ namespace UnitTest
         [TestMethod]
         public void SyntaxError()
         {
-            var testcases = Resources.ResourceManager.GetResourceSet(CultureInfo.InvariantCulture, true, true)
+            var testcases = ErrorResource.ResourceManager.GetResourceSet(CultureInfo.InvariantCulture, true, true)
                 .OfType<DictionaryEntry>()
                 .Where(e => ((string)e.Key).StartsWith("SyntaxError"));
 
@@ -45,7 +44,7 @@ namespace UnitTest
         [TestMethod]
         public void UnexpectedEOF()
         {
-            var testcases = Resources.ResourceManager.GetResourceSet(CultureInfo.InvariantCulture, true, true)
+            var testcases = ErrorResource.ResourceManager.GetResourceSet(CultureInfo.InvariantCulture, true, true)
                 .OfType<DictionaryEntry>()
                 .Where(e => ((string)e.Key).StartsWith("UnexpectedEOF"));
 
