@@ -37,7 +37,7 @@ namespace UnitTest
                 var error = parser.Logger.ErrorOutputs.First();
                 Debug.WriteLine("Passed: {0} (in: {1})",
                     (string)testcase.Key,
-                    error.Position.Position);
+                    error.CodePosition.CharPosition);
                 Debug.WriteLine("|" + error.Appendix.Replace("\n", "\n|"));
             }
         }
@@ -67,7 +67,7 @@ namespace UnitTest
                 var error = parser.Logger.ErrorOutputs.First();
                 Debug.WriteLine("Passed: {0} (in: {1})",
                     (string)testcase.Key,
-                    error.Position.Position);
+                    error.CodePosition.CharPosition);
                 Debug.WriteLine("|" + error.Appendix.Replace("\n", "\n|"));
             }
         }

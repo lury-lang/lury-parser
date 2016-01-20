@@ -166,8 +166,8 @@ namespace Lury.Compiling.Parser
                     ParserError.SyntaxError,
                     token.Text,
                     token.SourceCode,
-                    token.Position,
-                    string.Join("\n", token.SourceCode.GeneratePointingStrings(token.Position.Position, token.Length)));
+                    token.CodePosition,
+                    string.Join("\n", token.SourceCode.GeneratePointingStrings(token.CodePosition.CharPosition, token.Length)));
             }
             else if (ex is yyUnexpectedEof)
             {
@@ -176,8 +176,8 @@ namespace Lury.Compiling.Parser
                     ParserError.UnexpectedEOF,
                     null,
                     lastToken.SourceCode,
-                    lastToken.Position,
-                    string.Join("\n", lastToken.SourceCode.GeneratePointingStrings(lastToken.Position.Position, 0)));
+                    lastToken.CodePosition,
+                    string.Join("\n", lastToken.SourceCode.GeneratePointingStrings(lastToken.CodePosition.CharPosition, 0)));
             }
 
             // WIP
