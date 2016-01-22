@@ -211,6 +211,12 @@ elif a: pass</value>
     <value>while:
 else: pass</value>
   </data>
+  <data name="SyntaxError40c0" xml:space="preserve">
+    <value>1 . 1</value>
+  </data>
+  <data name="SyntaxError40c1" xml:space="preserve">
+    <value>a . 1</value>
+  </data>
   <data name="UnexpectedEOF0001" xml:space="preserve">
     <value>if a:</value>
   </data>

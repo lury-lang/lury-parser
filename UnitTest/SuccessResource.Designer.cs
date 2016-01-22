@@ -61,293 +61,601 @@ namespace UnitTest {
         }
         
         /// <summary>
-        ///   if:
-        /// pass に類似しているローカライズされた文字列を検索します。
+        ///   if a: pass に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string SyntaxError0000 {
+        internal static string Success0000 {
             get {
-                return ResourceManager.GetString("SyntaxError0000", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   if if:
-        ///  pass に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError0001 {
-            get {
-                return ResourceManager.GetString("SyntaxError0001", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   if に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError0002 {
-            get {
-                return ResourceManager.GetString("SyntaxError0002", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   if pass に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError0003 {
-            get {
-                return ResourceManager.GetString("SyntaxError0003", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   if if: pass に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError0004 {
-            get {
-                return ResourceManager.GetString("SyntaxError0004", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   elif a:
-        /// pass に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError0005 {
-            get {
-                return ResourceManager.GetString("SyntaxError0005", resourceCulture);
+                return ResourceManager.GetString("Success0000", resourceCulture);
             }
         }
         
         /// <summary>
         ///   if a:
+        ///  pass に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success0001 {
+            get {
+                return ResourceManager.GetString("Success0001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   if a: pass
+        ///elif a: pass に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success0002 {
+            get {
+                return ResourceManager.GetString("Success0002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   if a:
+        ///  pass
         ///elif a:
-        /// pass に類似しているローカライズされた文字列を検索します。
+        ///  pass に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string SyntaxError0006 {
+        internal static string Success0003 {
             get {
-                return ResourceManager.GetString("SyntaxError0006", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   if: pass
-        ///elif a: に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError0007 {
-            get {
-                return ResourceManager.GetString("SyntaxError0007", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   if:
-        /// pass
-        ///elif a: に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError0008 {
-            get {
-                return ResourceManager.GetString("SyntaxError0008", resourceCulture);
+                return ResourceManager.GetString("Success0003", resourceCulture);
             }
         }
         
         /// <summary>
         ///   if a: pass
-        ///elif: pass に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError0009 {
-            get {
-                return ResourceManager.GetString("SyntaxError0009", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   if: pass
-        ///elif a: pass に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError000a {
-            get {
-                return ResourceManager.GetString("SyntaxError000a", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   if:
-        /// pass
-        ///else: に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError000b {
-            get {
-                return ResourceManager.GetString("SyntaxError000b", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   if: pass
-        ///else: に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError000c {
-            get {
-                return ResourceManager.GetString("SyntaxError000c", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   if: pass
-        ///elif a: pass
         ///else: pass に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string SyntaxError000d {
+        internal static string Success0004 {
             get {
-                return ResourceManager.GetString("SyntaxError000d", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   if a: pass
-        ///elif: pass
-        ///else: pass に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError000e {
-            get {
-                return ResourceManager.GetString("SyntaxError000e", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   if a: pass
-        ///else: pass
-        ///else: pass に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError000f {
-            get {
-                return ResourceManager.GetString("SyntaxError000f", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   if a: pass
-        ///else: pass
-        ///elif a: pass に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError0010 {
-            get {
-                return ResourceManager.GetString("SyntaxError0010", resourceCulture);
+                return ResourceManager.GetString("Success0004", resourceCulture);
             }
         }
         
         /// <summary>
         ///   if a: pass
         ///elif a: pass
-        ///else: pass
-        ///elif a: pass に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError0011 {
-            get {
-                return ResourceManager.GetString("SyntaxError0011", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   if a に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError0012 {
-            get {
-                return ResourceManager.GetString("SyntaxError0012", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   while に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError0100 {
-            get {
-                return ResourceManager.GetString("SyntaxError0100", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   while: に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError0101 {
-            get {
-                return ResourceManager.GetString("SyntaxError0101", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   while a に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string SyntaxError0102 {
-            get {
-                return ResourceManager.GetString("SyntaxError0102", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   while:
         ///else: pass に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string SyntaxError0103 {
+        internal static string Success0005 {
             get {
-                return ResourceManager.GetString("SyntaxError0103", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   if a: に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string UnexpectedEOF0001 {
-            get {
-                return ResourceManager.GetString("UnexpectedEOF0001", resourceCulture);
+                return ResourceManager.GetString("Success0005", resourceCulture);
             }
         }
         
         /// <summary>
         ///   if a: pass
-        ///elif a: に類似しているローカライズされた文字列を検索します。
+        ///elif b: pass
+        ///elif c: pass に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string UnexpectedEOF0002 {
+        internal static string Success0006 {
             get {
-                return ResourceManager.GetString("UnexpectedEOF0002", resourceCulture);
+                return ResourceManager.GetString("Success0006", resourceCulture);
             }
         }
         
         /// <summary>
         ///   if a: pass
-        ///elif a: pass
-        ///else: に類似しているローカライズされた文字列を検索します。
+        ///elif b: pass
+        ///elif c: pass
+        ///else: pass に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string UnexpectedEOF0003 {
+        internal static string Success0007 {
             get {
-                return ResourceManager.GetString("UnexpectedEOF0003", resourceCulture);
+                return ResourceManager.GetString("Success0007", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   while a: pass
-        ///else: に類似しているローカライズされた文字列を検索します。
+        ///   if a:
+        ///  if b: pass に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string UnexpectedEOF0100 {
+        internal static string Success0008 {
             get {
-                return ResourceManager.GetString("UnexpectedEOF0100", resourceCulture);
+                return ResourceManager.GetString("Success0008", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   while a: に類似しているローカライズされた文字列を検索します。
+        ///   if a:
+        ///  if b: pass
+        ///else:
+        ///  if c: pass に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string UnexpectedEOF0101 {
+        internal static string Success0009 {
             get {
-                return ResourceManager.GetString("UnexpectedEOF0101", resourceCulture);
+                return ResourceManager.GetString("Success0009", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   while a: pass
-        ///else: に類似しているローカライズされた文字列を検索します。
+        ///   while a:
+        ///  pass に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string UnexpectedEOF0102 {
+        internal static string Success0100 {
             get {
-                return ResourceManager.GetString("UnexpectedEOF0102", resourceCulture);
+                return ResourceManager.GetString("Success0100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   while a: pass に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success0101 {
+            get {
+                return ResourceManager.GetString("Success0101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   while a:
+        ///  pass
+        ///else:
+        ///  pass に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success0102 {
+            get {
+                return ResourceManager.GetString("Success0102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   while a:
+        ///  while b:
+        ///    pass に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success0103 {
+            get {
+                return ResourceManager.GetString("Success0103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 + 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4000 {
+            get {
+                return ResourceManager.GetString("Success4000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 + a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4001 {
+            get {
+                return ResourceManager.GetString("Success4001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a + 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4002 {
+            get {
+                return ResourceManager.GetString("Success4002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a + a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4003 {
+            get {
+                return ResourceManager.GetString("Success4003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 - 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4010 {
+            get {
+                return ResourceManager.GetString("Success4010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 - a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4011 {
+            get {
+                return ResourceManager.GetString("Success4011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a - 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4012 {
+            get {
+                return ResourceManager.GetString("Success4012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a - a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4013 {
+            get {
+                return ResourceManager.GetString("Success4013", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 * 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4020 {
+            get {
+                return ResourceManager.GetString("Success4020", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 * a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4021 {
+            get {
+                return ResourceManager.GetString("Success4021", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a * 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4022 {
+            get {
+                return ResourceManager.GetString("Success4022", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a * a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4023 {
+            get {
+                return ResourceManager.GetString("Success4023", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 / 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4030 {
+            get {
+                return ResourceManager.GetString("Success4030", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 / a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4031 {
+            get {
+                return ResourceManager.GetString("Success4031", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a / 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4032 {
+            get {
+                return ResourceManager.GetString("Success4032", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a / a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4033 {
+            get {
+                return ResourceManager.GetString("Success4033", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 // 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4040 {
+            get {
+                return ResourceManager.GetString("Success4040", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 // a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4041 {
+            get {
+                return ResourceManager.GetString("Success4041", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a // 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4042 {
+            get {
+                return ResourceManager.GetString("Success4042", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a // a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4043 {
+            get {
+                return ResourceManager.GetString("Success4043", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 ~ 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4050 {
+            get {
+                return ResourceManager.GetString("Success4050", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 ~ a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4051 {
+            get {
+                return ResourceManager.GetString("Success4051", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a ~ 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4052 {
+            get {
+                return ResourceManager.GetString("Success4052", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a ~ a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4053 {
+            get {
+                return ResourceManager.GetString("Success4053", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 % 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4060 {
+            get {
+                return ResourceManager.GetString("Success4060", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 % a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4061 {
+            get {
+                return ResourceManager.GetString("Success4061", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a % 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4062 {
+            get {
+                return ResourceManager.GetString("Success4062", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a % a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4063 {
+            get {
+                return ResourceManager.GetString("Success4063", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 &amp; 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4070 {
+            get {
+                return ResourceManager.GetString("Success4070", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 &amp; a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4071 {
+            get {
+                return ResourceManager.GetString("Success4071", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a &amp; 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4072 {
+            get {
+                return ResourceManager.GetString("Success4072", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a &amp; a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4073 {
+            get {
+                return ResourceManager.GetString("Success4073", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 | 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4080 {
+            get {
+                return ResourceManager.GetString("Success4080", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 | a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4081 {
+            get {
+                return ResourceManager.GetString("Success4081", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a | 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4082 {
+            get {
+                return ResourceManager.GetString("Success4082", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a | a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4083 {
+            get {
+                return ResourceManager.GetString("Success4083", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 ^ 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4090 {
+            get {
+                return ResourceManager.GetString("Success4090", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 ^ a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4091 {
+            get {
+                return ResourceManager.GetString("Success4091", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a ^ 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4092 {
+            get {
+                return ResourceManager.GetString("Success4092", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a ^ a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4093 {
+            get {
+                return ResourceManager.GetString("Success4093", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 &lt; 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success40a0 {
+            get {
+                return ResourceManager.GetString("Success40a0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 &lt; a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success40a1 {
+            get {
+                return ResourceManager.GetString("Success40a1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a &lt; 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success40a2 {
+            get {
+                return ResourceManager.GetString("Success40a2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a &lt; a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success40a3 {
+            get {
+                return ResourceManager.GetString("Success40a3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 &gt; 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success40b0 {
+            get {
+                return ResourceManager.GetString("Success40b0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 &gt; a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success40b1 {
+            get {
+                return ResourceManager.GetString("Success40b1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a &gt; 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success40b2 {
+            get {
+                return ResourceManager.GetString("Success40b2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a &gt; a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success40b3 {
+            get {
+                return ResourceManager.GetString("Success40b3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 . a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success40c1 {
+            get {
+                return ResourceManager.GetString("Success40c1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a . a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success40c3 {
+            get {
+                return ResourceManager.GetString("Success40c3", resourceCulture);
             }
         }
     }

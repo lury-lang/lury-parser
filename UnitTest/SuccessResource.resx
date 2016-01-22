@@ -117,121 +117,219 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SyntaxError0000" xml:space="preserve">
-    <value>if:
- pass</value>
+  <data name="Success0000" xml:space="preserve">
+    <value>if a: pass</value>
   </data>
-  <data name="SyntaxError0001" xml:space="preserve">
-    <value>if if:
+  <data name="Success0001" xml:space="preserve">
+    <value>if a:
   pass</value>
   </data>
-  <data name="SyntaxError0002" xml:space="preserve">
-    <value>if</value>
+  <data name="Success0002" xml:space="preserve">
+    <value>if a: pass
+elif a: pass</value>
   </data>
-  <data name="SyntaxError0003" xml:space="preserve">
-    <value>if pass</value>
-  </data>
-  <data name="SyntaxError0004" xml:space="preserve">
-    <value>if if: pass</value>
-  </data>
-  <data name="SyntaxError0005" xml:space="preserve">
-    <value>elif a:
- pass</value>
-  </data>
-  <data name="SyntaxError0006" xml:space="preserve">
+  <data name="Success0003" xml:space="preserve">
     <value>if a:
+  pass
 elif a:
- pass</value>
+  pass</value>
   </data>
-  <data name="SyntaxError0007" xml:space="preserve">
-    <value>if: pass
-elif a:</value>
-  </data>
-  <data name="SyntaxError0008" xml:space="preserve">
-    <value>if:
- pass
-elif a:</value>
-  </data>
-  <data name="SyntaxError0009" xml:space="preserve">
+  <data name="Success0004" xml:space="preserve">
     <value>if a: pass
-elif: pass</value>
+else: pass</value>
   </data>
-  <data name="SyntaxError000a" xml:space="preserve">
-    <value>if: pass
-elif a: pass</value>
-  </data>
-  <data name="SyntaxError000b" xml:space="preserve">
-    <value>if:
- pass
-else:</value>
-  </data>
-  <data name="SyntaxError000c" xml:space="preserve">
-    <value>if: pass
-else:</value>
-  </data>
-  <data name="SyntaxError000d" xml:space="preserve">
-    <value>if: pass
+  <data name="Success0005" xml:space="preserve">
+    <value>if a: pass
 elif a: pass
 else: pass</value>
   </data>
-  <data name="SyntaxError000e" xml:space="preserve">
+  <data name="Success0006" xml:space="preserve">
     <value>if a: pass
-elif: pass
+elif b: pass
+elif c: pass</value>
+  </data>
+  <data name="Success0007" xml:space="preserve">
+    <value>if a: pass
+elif b: pass
+elif c: pass
 else: pass</value>
   </data>
-  <data name="SyntaxError000f" xml:space="preserve">
-    <value>if a: pass
-else: pass
-else: pass</value>
+  <data name="Success0008" xml:space="preserve">
+    <value>if a:
+  if b: pass</value>
   </data>
-  <data name="SyntaxError0010" xml:space="preserve">
-    <value>if a: pass
-else: pass
-elif a: pass</value>
+  <data name="Success0009" xml:space="preserve">
+    <value>if a:
+  if b: pass
+else:
+  if c: pass</value>
   </data>
-  <data name="SyntaxError0011" xml:space="preserve">
-    <value>if a: pass
-elif a: pass
-else: pass
-elif a: pass</value>
+  <data name="Success0100" xml:space="preserve">
+    <value>while a:
+  pass</value>
   </data>
-  <data name="SyntaxError0012" xml:space="preserve">
-    <value>if a</value>
+  <data name="Success0101" xml:space="preserve">
+    <value>while a: pass</value>
   </data>
-  <data name="SyntaxError0100" xml:space="preserve">
-    <value>while</value>
+  <data name="Success0102" xml:space="preserve">
+    <value>while a:
+  pass
+else:
+  pass</value>
   </data>
-  <data name="SyntaxError0101" xml:space="preserve">
-    <value>while:</value>
+  <data name="Success0103" xml:space="preserve">
+    <value>while a:
+  while b:
+    pass</value>
   </data>
-  <data name="SyntaxError0102" xml:space="preserve">
-    <value>while a</value>
+  <data name="Success4000" xml:space="preserve">
+    <value>1 + 1</value>
   </data>
-  <data name="SyntaxError0103" xml:space="preserve">
-    <value>while:
-else: pass</value>
+  <data name="Success4001" xml:space="preserve">
+    <value>1 + a</value>
   </data>
-  <data name="UnexpectedEOF0001" xml:space="preserve">
-    <value>if a:</value>
+  <data name="Success4002" xml:space="preserve">
+    <value>a + 1</value>
   </data>
-  <data name="UnexpectedEOF0002" xml:space="preserve">
-    <value>if a: pass
-elif a:</value>
+  <data name="Success4003" xml:space="preserve">
+    <value>a + a</value>
   </data>
-  <data name="UnexpectedEOF0003" xml:space="preserve">
-    <value>if a: pass
-elif a: pass
-else:</value>
+  <data name="Success4010" xml:space="preserve">
+    <value>1 - 1</value>
   </data>
-  <data name="UnexpectedEOF0100" xml:space="preserve">
-    <value>while a: pass
-else:</value>
+  <data name="Success4011" xml:space="preserve">
+    <value>1 - a</value>
   </data>
-  <data name="UnexpectedEOF0101" xml:space="preserve">
-    <value>while a:</value>
+  <data name="Success4012" xml:space="preserve">
+    <value>a - 1</value>
   </data>
-  <data name="UnexpectedEOF0102" xml:space="preserve">
-    <value>while a: pass
-else:</value>
+  <data name="Success4013" xml:space="preserve">
+    <value>a - a</value>
+  </data>
+  <data name="Success4020" xml:space="preserve">
+    <value>1 * 1</value>
+  </data>
+  <data name="Success4021" xml:space="preserve">
+    <value>1 * a</value>
+  </data>
+  <data name="Success4022" xml:space="preserve">
+    <value>a * 1</value>
+  </data>
+  <data name="Success4023" xml:space="preserve">
+    <value>a * a</value>
+  </data>
+  <data name="Success4030" xml:space="preserve">
+    <value>1 / 1</value>
+  </data>
+  <data name="Success4031" xml:space="preserve">
+    <value>1 / a</value>
+  </data>
+  <data name="Success4032" xml:space="preserve">
+    <value>a / 1</value>
+  </data>
+  <data name="Success4033" xml:space="preserve">
+    <value>a / a</value>
+  </data>
+  <data name="Success4040" xml:space="preserve">
+    <value>1 // 1</value>
+  </data>
+  <data name="Success4041" xml:space="preserve">
+    <value>1 // a</value>
+  </data>
+  <data name="Success4042" xml:space="preserve">
+    <value>a // 1</value>
+  </data>
+  <data name="Success4043" xml:space="preserve">
+    <value>a // a</value>
+  </data>
+  <data name="Success4050" xml:space="preserve">
+    <value>1 ~ 1</value>
+  </data>
+  <data name="Success4051" xml:space="preserve">
+    <value>1 ~ a</value>
+  </data>
+  <data name="Success4052" xml:space="preserve">
+    <value>a ~ 1</value>
+  </data>
+  <data name="Success4053" xml:space="preserve">
+    <value>a ~ a</value>
+  </data>
+  <data name="Success4060" xml:space="preserve">
+    <value>1 % 1</value>
+  </data>
+  <data name="Success4061" xml:space="preserve">
+    <value>1 % a</value>
+  </data>
+  <data name="Success4062" xml:space="preserve">
+    <value>a % 1</value>
+  </data>
+  <data name="Success4063" xml:space="preserve">
+    <value>a % a</value>
+  </data>
+  <data name="Success4070" xml:space="preserve">
+    <value>1 &amp; 1</value>
+  </data>
+  <data name="Success4071" xml:space="preserve">
+    <value>1 &amp; a</value>
+  </data>
+  <data name="Success4072" xml:space="preserve">
+    <value>a &amp; 1</value>
+  </data>
+  <data name="Success4073" xml:space="preserve">
+    <value>a &amp; a</value>
+  </data>
+  <data name="Success4080" xml:space="preserve">
+    <value>1 | 1</value>
+  </data>
+  <data name="Success4081" xml:space="preserve">
+    <value>1 | a</value>
+  </data>
+  <data name="Success4082" xml:space="preserve">
+    <value>a | 1</value>
+  </data>
+  <data name="Success4083" xml:space="preserve">
+    <value>a | a</value>
+  </data>
+  <data name="Success4090" xml:space="preserve">
+    <value>1 ^ 1</value>
+  </data>
+  <data name="Success4091" xml:space="preserve">
+    <value>1 ^ a</value>
+  </data>
+  <data name="Success4092" xml:space="preserve">
+    <value>a ^ 1</value>
+  </data>
+  <data name="Success4093" xml:space="preserve">
+    <value>a ^ a</value>
+  </data>
+  <data name="Success40a0" xml:space="preserve">
+    <value>1 &lt; 1</value>
+  </data>
+  <data name="Success40a1" xml:space="preserve">
+    <value>1 &lt; a</value>
+  </data>
+  <data name="Success40a2" xml:space="preserve">
+    <value>a &lt; 1</value>
+  </data>
+  <data name="Success40a3" xml:space="preserve">
+    <value>a &lt; a</value>
+  </data>
+  <data name="Success40b0" xml:space="preserve">
+    <value>1 &gt; 1</value>
+  </data>
+  <data name="Success40b1" xml:space="preserve">
+    <value>1 &gt; a</value>
+  </data>
+  <data name="Success40b2" xml:space="preserve">
+    <value>a &gt; 1</value>
+  </data>
+  <data name="Success40b3" xml:space="preserve">
+    <value>a &gt; a</value>
+  </data>
+  <data name="Success40c1" xml:space="preserve">
+    <value>1 . a</value>
+  </data>
+  <data name="Success40c3" xml:space="preserve">
+    <value>a . a</value>
   </data>
 </root>

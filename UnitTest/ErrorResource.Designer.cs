@@ -293,6 +293,24 @@ namespace UnitTest {
         }
         
         /// <summary>
+        ///   1 . 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SyntaxError40c0 {
+            get {
+                return ResourceManager.GetString("SyntaxError40c0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a . 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SyntaxError40c1 {
+            get {
+                return ResourceManager.GetString("SyntaxError40c1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   if a: に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string UnexpectedEOF0001 {
