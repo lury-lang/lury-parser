@@ -533,7 +533,7 @@ comparison_expression
         }
     | comparison_expression KeywordIs KeywordNot or_expression
         {
-            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$3, BinaryNodeType.IsNot);
+            $$ = new BinaryNode((LToken)$2, (Node)$1, (Node)$4, BinaryNodeType.IsNot);
         }
 
 or_expression

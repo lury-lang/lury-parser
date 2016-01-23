@@ -995,7 +995,7 @@ case 106:
 case 107:
 #line 537 "InteractiveParser.jay"
   {
-            yyVal = new BinaryNode((LToken)yyVals[-2+yyTop], (Node)yyVals[-3+yyTop], (Node)yyVals[-1+yyTop], BinaryNodeType.IsNot);
+            yyVal = new BinaryNode((LToken)yyVals[-2+yyTop], (Node)yyVals[-3+yyTop], (Node)yyVals[0+yyTop], BinaryNodeType.IsNot);
         }
   break;
 case 109:

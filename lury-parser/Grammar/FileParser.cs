@@ -1009,7 +1009,7 @@ case 111:
 case 112:
 #line 557 "FileParser.jay"
   {
-            yyVal = new BinaryNode((LToken)yyVals[-2+yyTop], (Node)yyVals[-3+yyTop], (Node)yyVals[-1+yyTop], BinaryNodeType.IsNot);
+            yyVal = new BinaryNode((LToken)yyVals[-2+yyTop], (Node)yyVals[-3+yyTop], (Node)yyVals[0+yyTop], BinaryNodeType.IsNot);
         }
   break;
 case 114:
