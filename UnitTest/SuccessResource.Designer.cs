@@ -658,5 +658,149 @@ namespace UnitTest {
                 return ResourceManager.GetString("Success40c3", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   1 = 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success40d0 {
+            get {
+                return ResourceManager.GetString("Success40d0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 = a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success40d1 {
+            get {
+                return ResourceManager.GetString("Success40d1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a = 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success40d2 {
+            get {
+                return ResourceManager.GetString("Success40d2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a = a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success40d3 {
+            get {
+                return ResourceManager.GetString("Success40d3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 is 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4100 {
+            get {
+                return ResourceManager.GetString("Success4100", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 is a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4101 {
+            get {
+                return ResourceManager.GetString("Success4101", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a is 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4102 {
+            get {
+                return ResourceManager.GetString("Success4102", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a is a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4103 {
+            get {
+                return ResourceManager.GetString("Success4103", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 !is 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4110 {
+            get {
+                return ResourceManager.GetString("Success4110", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 !is a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4111 {
+            get {
+                return ResourceManager.GetString("Success4111", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a !is 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4112 {
+            get {
+                return ResourceManager.GetString("Success4112", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a !is a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4113 {
+            get {
+                return ResourceManager.GetString("Success4113", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 is not 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4120 {
+            get {
+                return ResourceManager.GetString("Success4120", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   1 is not a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4121 {
+            get {
+                return ResourceManager.GetString("Success4121", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a is not 1 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4122 {
+            get {
+                return ResourceManager.GetString("Success4122", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a is not a に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4123 {
+            get {
+                return ResourceManager.GetString("Success4123", resourceCulture);
+            }
+        }
     }
 }

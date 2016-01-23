@@ -332,4 +332,52 @@ else:
   <data name="Success40c3" xml:space="preserve">
     <value>a . a</value>
   </data>
+  <data name="Success40d0" xml:space="preserve">
+    <value>1 = 1</value>
+  </data>
+  <data name="Success40d1" xml:space="preserve">
+    <value>1 = a</value>
+  </data>
+  <data name="Success40d2" xml:space="preserve">
+    <value>a = 1</value>
+  </data>
+  <data name="Success40d3" xml:space="preserve">
+    <value>a = a</value>
+  </data>
+  <data name="Success4100" xml:space="preserve">
+    <value>1 is 1</value>
+  </data>
+  <data name="Success4101" xml:space="preserve">
+    <value>1 is a</value>
+  </data>
+  <data name="Success4102" xml:space="preserve">
+    <value>a is 1</value>
+  </data>
+  <data name="Success4103" xml:space="preserve">
+    <value>a is a</value>
+  </data>
+  <data name="Success4110" xml:space="preserve">
+    <value>1 !is 1</value>
+  </data>
+  <data name="Success4111" xml:space="preserve">
+    <value>1 !is a</value>
+  </data>
+  <data name="Success4112" xml:space="preserve">
+    <value>a !is 1</value>
+  </data>
+  <data name="Success4113" xml:space="preserve">
+    <value>a !is a</value>
+  </data>
+  <data name="Success4120" xml:space="preserve">
+    <value>1 is not 1</value>
+  </data>
+  <data name="Success4121" xml:space="preserve">
+    <value>1 is not a</value>
+  </data>
+  <data name="Success4122" xml:space="preserve">
+    <value>a is not 1</value>
+  </data>
+  <data name="Success4123" xml:space="preserve">
+    <value>a is not a</value>
+  </data>
 </root>
