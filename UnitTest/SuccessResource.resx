@@ -380,4 +380,184 @@ else:
   <data name="Success4123" xml:space="preserve">
     <value>a is not a</value>
   </data>
+  <data name="Success4130" xml:space="preserve">
+    <value>1 and 1</value>
+  </data>
+  <data name="Success4131" xml:space="preserve">
+    <value>1 and a</value>
+  </data>
+  <data name="Success4132" xml:space="preserve">
+    <value>a and 1</value>
+  </data>
+  <data name="Success4133" xml:space="preserve">
+    <value>a and a</value>
+  </data>
+  <data name="Success4140" xml:space="preserve">
+    <value>1 or 1</value>
+  </data>
+  <data name="Success4141" xml:space="preserve">
+    <value>1 or a</value>
+  </data>
+  <data name="Success4142" xml:space="preserve">
+    <value>a or 1</value>
+  </data>
+  <data name="Success4143" xml:space="preserve">
+    <value>a or a</value>
+  </data>
+  <data name="Success4200" xml:space="preserve">
+    <value>1 **= 1</value>
+  </data>
+  <data name="Success4201" xml:space="preserve">
+    <value>1 **= a</value>
+  </data>
+  <data name="Success4202" xml:space="preserve">
+    <value>a **= 1</value>
+  </data>
+  <data name="Success4203" xml:space="preserve">
+    <value>a **= a</value>
+  </data>
+  <data name="Success4210" xml:space="preserve">
+    <value>1 *= 1</value>
+  </data>
+  <data name="Success4211" xml:space="preserve">
+    <value>1 *= a</value>
+  </data>
+  <data name="Success4212" xml:space="preserve">
+    <value>a *= 1</value>
+  </data>
+  <data name="Success4213" xml:space="preserve">
+    <value>a *= a</value>
+  </data>
+  <data name="Success4220" xml:space="preserve">
+    <value>1 /= 1</value>
+  </data>
+  <data name="Success4221" xml:space="preserve">
+    <value>1 /= a</value>
+  </data>
+  <data name="Success4222" xml:space="preserve">
+    <value>a /= 1</value>
+  </data>
+  <data name="Success4223" xml:space="preserve">
+    <value>a /= a</value>
+  </data>
+  <data name="Success4230" xml:space="preserve">
+    <value>1 //= 1</value>
+  </data>
+  <data name="Success4231" xml:space="preserve">
+    <value>1 //= a</value>
+  </data>
+  <data name="Success4232" xml:space="preserve">
+    <value>a //= 1</value>
+  </data>
+  <data name="Success4233" xml:space="preserve">
+    <value>a //= a</value>
+  </data>
+  <data name="Success4240" xml:space="preserve">
+    <value>1 %= 1</value>
+  </data>
+  <data name="Success4241" xml:space="preserve">
+    <value>1 %= a</value>
+  </data>
+  <data name="Success4242" xml:space="preserve">
+    <value>a %= 1</value>
+  </data>
+  <data name="Success4243" xml:space="preserve">
+    <value>a %= a</value>
+  </data>
+  <data name="Success4250" xml:space="preserve">
+    <value>1 += 1</value>
+  </data>
+  <data name="Success4251" xml:space="preserve">
+    <value>1 += a</value>
+  </data>
+  <data name="Success4252" xml:space="preserve">
+    <value>a += 1</value>
+  </data>
+  <data name="Success4253" xml:space="preserve">
+    <value>a += a</value>
+  </data>
+  <data name="Success4260" xml:space="preserve">
+    <value>1 -= 1</value>
+  </data>
+  <data name="Success4261" xml:space="preserve">
+    <value>1 -= a</value>
+  </data>
+  <data name="Success4262" xml:space="preserve">
+    <value>a -= 1</value>
+  </data>
+  <data name="Success4263" xml:space="preserve">
+    <value>a -= a</value>
+  </data>
+  <data name="Success4270" xml:space="preserve">
+    <value>1 ~= 1</value>
+  </data>
+  <data name="Success4271" xml:space="preserve">
+    <value>1 ~= a</value>
+  </data>
+  <data name="Success4272" xml:space="preserve">
+    <value>a ~= 1</value>
+  </data>
+  <data name="Success4273" xml:space="preserve">
+    <value>a ~= a</value>
+  </data>
+  <data name="Success4280" xml:space="preserve">
+    <value>1 |= 1</value>
+  </data>
+  <data name="Success4281" xml:space="preserve">
+    <value>1 |= a</value>
+  </data>
+  <data name="Success4282" xml:space="preserve">
+    <value>a |= 1</value>
+  </data>
+  <data name="Success4283" xml:space="preserve">
+    <value>a |= a</value>
+  </data>
+  <data name="Success4290" xml:space="preserve">
+    <value>1 &amp;= 1</value>
+  </data>
+  <data name="Success4291" xml:space="preserve">
+    <value>1 &amp;= a</value>
+  </data>
+  <data name="Success4292" xml:space="preserve">
+    <value>a &amp;= 1</value>
+  </data>
+  <data name="Success4293" xml:space="preserve">
+    <value>a &amp;= a</value>
+  </data>
+  <data name="Success42a0" xml:space="preserve">
+    <value>1 ^= 1</value>
+  </data>
+  <data name="Success42a1" xml:space="preserve">
+    <value>1 ^= a</value>
+  </data>
+  <data name="Success42a2" xml:space="preserve">
+    <value>a ^= 1</value>
+  </data>
+  <data name="Success42a3" xml:space="preserve">
+    <value>a ^= a</value>
+  </data>
+  <data name="Success42b0" xml:space="preserve">
+    <value>1 &lt;&lt;= 1</value>
+  </data>
+  <data name="Success42b1" xml:space="preserve">
+    <value>1 &lt;&lt;= a</value>
+  </data>
+  <data name="Success42b2" xml:space="preserve">
+    <value>a &lt;&lt;= 1</value>
+  </data>
+  <data name="Success42b3" xml:space="preserve">
+    <value>a &lt;&lt;= a</value>
+  </data>
+  <data name="Success42c0" xml:space="preserve">
+    <value>1 &gt;&gt;= 1</value>
+  </data>
+  <data name="Success42c1" xml:space="preserve">
+    <value>1 &gt;&gt;= a</value>
+  </data>
+  <data name="Success42c2" xml:space="preserve">
+    <value>a &gt;&gt;= 1</value>
+  </data>
+  <data name="Success42c3" xml:space="preserve">
+    <value>a &gt;&gt;= a</value>
+  </data>
 </root>
