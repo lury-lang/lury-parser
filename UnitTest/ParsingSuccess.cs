@@ -31,7 +31,7 @@ namespace UnitTest
                 Assert.IsNotNull(parser.TreeOutput);
                 Assert.AreEqual(0, parser.Logger.Outputs.Count());
                 
-                Debug.WriteLine("Passed: {0} (in: {1})", (string)testcase.Key);
+                Debug.WriteLine("Passed: {0}", (object)testcase.Key);
             }
         }
     }
