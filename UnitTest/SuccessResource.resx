@@ -620,4 +620,52 @@ else:
   <data name="Success4391" xml:space="preserve">
     <value>not a</value>
   </data>
+  <data name="Success4400" xml:space="preserve">
+    <value>1 ? 1 : 1</value>
+  </data>
+  <data name="Success4401" xml:space="preserve">
+    <value>1 ? 1 : a</value>
+  </data>
+  <data name="Success4402" xml:space="preserve">
+    <value>1 ? a : 1</value>
+  </data>
+  <data name="Success4403" xml:space="preserve">
+    <value>1 ? a : a</value>
+  </data>
+  <data name="Success4404" xml:space="preserve">
+    <value>a ? 1 : 1</value>
+  </data>
+  <data name="Success4405" xml:space="preserve">
+    <value>a ? 1 : a</value>
+  </data>
+  <data name="Success4406" xml:space="preserve">
+    <value>a ? a : 1</value>
+  </data>
+  <data name="Success4407" xml:space="preserve">
+    <value>a ? a : a</value>
+  </data>
+  <data name="Success4410" xml:space="preserve">
+    <value>1 if 1 else 1</value>
+  </data>
+  <data name="Success4411" xml:space="preserve">
+    <value>1 if 1 else a</value>
+  </data>
+  <data name="Success4412" xml:space="preserve">
+    <value>1 if a else 1</value>
+  </data>
+  <data name="Success4413" xml:space="preserve">
+    <value>1 if a else a</value>
+  </data>
+  <data name="Success4414" xml:space="preserve">
+    <value>a if 1 else 1</value>
+  </data>
+  <data name="Success4415" xml:space="preserve">
+    <value>a if 1 else a</value>
+  </data>
+  <data name="Success4416" xml:space="preserve">
+    <value>a if a else 1</value>
+  </data>
+  <data name="Success4417" xml:space="preserve">
+    <value>a if a else a</value>
+  </data>
 </root>
