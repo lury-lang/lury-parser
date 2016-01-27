@@ -1168,7 +1168,7 @@ case 148:
 case 151:
 #line 712 "FileParser.jay"
   {
-            yyVal = new ArgumentNode((LToken)yyVals[-2+yyTop], (Node)yyVals[-1+yyTop]);
+            yyVal = new ArgumentNode((LToken)yyVals[-2+yyTop], (Node)yyVals[0+yyTop]);
         }
   break;
 case 152:

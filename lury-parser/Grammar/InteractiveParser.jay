@@ -688,7 +688,7 @@ argument
 named_argument
     : identifier_all ':' expression
         {
-            $$ = new ArgumentNode((LToken)$1, (Node)$2);
+            $$ = new ArgumentNode((LToken)$1, (Node)$3);
         }
 
 primary

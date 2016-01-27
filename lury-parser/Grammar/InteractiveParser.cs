@@ -1154,7 +1154,7 @@ case 143:
 case 146:
 #line 692 "InteractiveParser.jay"
   {
-            yyVal = new ArgumentNode((LToken)yyVals[-2+yyTop], (Node)yyVals[-1+yyTop]);
+            yyVal = new ArgumentNode((LToken)yyVals[-2+yyTop], (Node)yyVals[0+yyTop]);
         }
   break;
 case 147:
