@@ -1666,5 +1666,95 @@ namespace UnitTest {
                 return ResourceManager.GetString("Success4417", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   a() に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4500 {
+            get {
+                return ResourceManager.GetString("Success4500", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a(1) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4501 {
+            get {
+                return ResourceManager.GetString("Success4501", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a(a) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4502 {
+            get {
+                return ResourceManager.GetString("Success4502", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a(1, 1) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4503 {
+            get {
+                return ResourceManager.GetString("Success4503", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a(1, a) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4504 {
+            get {
+                return ResourceManager.GetString("Success4504", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a(a, 1) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4505 {
+            get {
+                return ResourceManager.GetString("Success4505", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a(a, a) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4506 {
+            get {
+                return ResourceManager.GetString("Success4506", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a(a, a, a) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4507 {
+            get {
+                return ResourceManager.GetString("Success4507", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a(a: 1) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4510 {
+            get {
+                return ResourceManager.GetString("Success4510", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   a(a: a) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Success4511 {
+            get {
+                return ResourceManager.GetString("Success4511", resourceCulture);
+            }
+        }
     }
 }

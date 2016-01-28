@@ -668,4 +668,34 @@ else:
   <data name="Success4417" xml:space="preserve">
     <value>a if a else a</value>
   </data>
+  <data name="Success4500" xml:space="preserve">
+    <value>a()</value>
+  </data>
+  <data name="Success4501" xml:space="preserve">
+    <value>a(1)</value>
+  </data>
+  <data name="Success4502" xml:space="preserve">
+    <value>a(a)</value>
+  </data>
+  <data name="Success4503" xml:space="preserve">
+    <value>a(1, 1)</value>
+  </data>
+  <data name="Success4504" xml:space="preserve">
+    <value>a(1, a)</value>
+  </data>
+  <data name="Success4505" xml:space="preserve">
+    <value>a(a, 1)</value>
+  </data>
+  <data name="Success4506" xml:space="preserve">
+    <value>a(a, a)</value>
+  </data>
+  <data name="Success4507" xml:space="preserve">
+    <value>a(a, a, a)</value>
+  </data>
+  <data name="Success4510" xml:space="preserve">
+    <value>a(a: 1)</value>
+  </data>
+  <data name="Success4511" xml:space="preserve">
+    <value>a(a: a)</value>
+  </data>
 </root>
