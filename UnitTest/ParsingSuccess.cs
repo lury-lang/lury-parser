@@ -27,10 +27,10 @@ namespace UnitTest
 
                 parser.Parse();
 
-                Assert.IsTrue(parser.IsFinished);
-                Assert.IsNotNull(parser.TreeOutput);
-                Assert.AreEqual(0, parser.Logger.Outputs.Count());
-                
+                Assert.IsTrue(parser.IsFinished, "テストケース: " + (string)testcase.Key);
+                Assert.IsNotNull(parser.TreeOutput, "テストケース: " + (string)testcase.Key);
+                Assert.AreEqual(0, parser.Logger.Outputs.Count(), "テストケース: " + (string)testcase.Key);
+
                 Debug.WriteLine("Passed: {0}", (object)testcase.Key);
             }
         }
