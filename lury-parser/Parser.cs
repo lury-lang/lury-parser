@@ -108,7 +108,7 @@ namespace Lury.Compiling.Parser
         public Parser(IEnumerable<LToken> input, bool interactiveMode = false)
         {
             if (input == null)
-                throw new ArgumentNullException("input");
+                throw new ArgumentNullException(nameof(input));
 
             this.input = input;
             this.InteractiveMode = interactiveMode;

@@ -46,21 +46,15 @@ namespace Lury.Compiling.Parser
         }
 
         public bool Advance()
-        {
-            return this.tokenEnumerator.MoveNext();
-        }
+            => this.tokenEnumerator.MoveNext();
 
         public IToken GetToken()
-        {
-            return this.interactiveMode ?
-                (IToken)new Token2InteractiveToken(this.tokenEnumerator.Current) :
-                (IToken)new Token2FileToken(this.tokenEnumerator.Current);
-        }
+            => this.interactiveMode ?
+               (IToken)new Token2InteractiveToken(this.tokenEnumerator.Current) :
+               (IToken)new Token2FileToken(this.tokenEnumerator.Current);
 
         public object GetValue()
-        {
-            return this.tokenEnumerator.Current;
-        }
+            => this.tokenEnumerator.Current;
     }
 
     internal abstract class Token2yyToken : IToken
@@ -93,7 +87,7 @@ namespace Lury.Compiling.Parser
         {
         }
 
-        protected override Dictionary<string, int> TokenMap { get { return tokenMap; } }
+        protected override Dictionary<string, int> TokenMap => tokenMap;
 
         #region -- Private Static Fields --
 
@@ -216,7 +210,7 @@ namespace Lury.Compiling.Parser
         {
         }
 
-        protected override Dictionary<string, int> TokenMap { get { return tokenMap; } }
+        protected override Dictionary<string, int> TokenMap => tokenMap;
 
         #region -- Private Static Fields --
 
