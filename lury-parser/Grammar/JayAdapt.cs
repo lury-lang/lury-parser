@@ -61,7 +61,7 @@ namespace Lury.Compiling.Parser
     {
         public LToken Token { get; private set; }
 
-        public Token2yyToken(LToken token)
+        protected Token2yyToken(LToken token)
         {
             this.Token = token;
         }
