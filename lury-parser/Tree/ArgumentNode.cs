@@ -36,9 +36,9 @@ namespace Lury.Compiling.Parser.Tree
     {
         #region -- Public Properties --
         
-        public LToken NameToken { get; private set; }
+        public LToken NameToken { get; }
 
-        public Node Node { get; private set; }
+        public Node Node { get; }
 
         #endregion
 
