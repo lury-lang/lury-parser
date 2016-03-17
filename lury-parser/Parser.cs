@@ -81,7 +81,7 @@ namespace Lury.Compiling.Parser
         /// <summary>
         /// 構文解析時に用いられたロガーを表す <see cref="OutputLogger"/> オブジェクトを取得します。
         /// </summary>
-        public OutputLogger Logger { get; private set; }
+        public OutputLogger Logger { get; }
 
         /// <summary>
         /// 構文解析が終了したかを表す真偽値を取得します。
@@ -91,7 +91,7 @@ namespace Lury.Compiling.Parser
         /// <summary>
         /// 構文解析器がインタラクティブモードであるかを表す真偽値を取得します。
         /// </summary>
-        public bool InteractiveMode { get; private set; }
+        public bool InteractiveMode { get; }
 
         #endregion
 
