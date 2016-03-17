@@ -37,9 +37,9 @@ namespace Lury.Compiling.Parser.Tree
     {
         #region -- Public Properties --
         
-        public Node NameNode { get; private set; }
+        public Node NameNode { get; }
 
-        public IEnumerable<Node> ArgumentNode { get; private set; }
+        public IEnumerable<Node> ArgumentNode { get; }
 
         #endregion
 
