@@ -62,8 +62,7 @@ namespace Lury.Compiling.Parser.Tree
 
         public override IEnumerable<Node> GetNodes()
         {
-            foreach (var suite in this.Suite)
-                yield return suite;
+            return this.Suite;
         }
 
         #endregion
