@@ -36,13 +36,13 @@ namespace Lury.Compiling.Parser.Tree
     {
         #region -- Public Properties --
 
-        public LToken StatementToken { get; private set; }
+        public LToken StatementToken { get; }
 
-        public Node ConditionNode { get; private set; }
+        public Node ConditionNode { get; }
 
-        public IEnumerable<Node> Suite { get; private set; }
+        public IEnumerable<Node> Suite { get; }
 
-        public StatementNode NextStatement { get; private set; }
+        public StatementNode NextStatement { get; }
 
         #endregion
 
