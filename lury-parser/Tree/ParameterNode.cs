@@ -36,11 +36,11 @@ namespace Lury.Compiling.Parser.Tree
     {
         #region -- Public Properties --
 
-        public LToken DecoratorToken { get; private set; }
+        public LToken DecoratorToken { get; }
         
-        public ParameterDecoratorType DecoratorType { get; private set; }
+        public ParameterDecoratorType DecoratorType { get; }
 
-        public Node Node { get; private set; }
+        public Node Node { get; }
 
         #endregion
 
