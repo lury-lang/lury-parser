@@ -38,7 +38,7 @@ namespace Lury.Compiling.Parser.Tree
 
         #region -- Constructors --
 
-        public StatementNode(StatementNodeType type)
+        protected StatementNode(StatementNodeType type)
         {
             this.Type = type;
         }
