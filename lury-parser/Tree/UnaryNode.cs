@@ -36,11 +36,11 @@ namespace Lury.Compiling.Parser.Tree
     {
         #region -- Public Properties --
 
-        public LToken OperatorToken { get; private set; }
+        public LToken OperatorToken { get; }
 
-        public Node Operand { get; private set; }
+        public Node Operand { get; }
 
-        public UnaryNodeType Type { get; private set; }
+        public UnaryNodeType Type { get; }
 
         #endregion
 
